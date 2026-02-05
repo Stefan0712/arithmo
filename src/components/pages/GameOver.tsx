@@ -54,10 +54,9 @@ const GameOver = () => {
       </div>
 
       <div className="relative mb-6">
-        <div className="relative flex flex-col items-center justify-center w-50 h-50 bg-surface border-4 border-white/5 rounded-full shadow-2xl">
-          <Trophy size={48} className="text-yellow-400 mb-2 fill-yellow-400/20" />
-          <span className="text-sm font-bold text-muted uppercase tracking-widest">Final Score</span>
-          <span className="text-7xl font-mono font-black text-white tracking-tight">
+        <div className="relative flex items-center gap-4">
+          <Trophy size={36} className="text-yellow-400 mb-2 fill-yellow-400/20" />
+          <span className="text-5xl font-mono font-black text-white tracking-tight">
             {gameData.score}
           </span>
         </div>
@@ -106,7 +105,7 @@ const GameOver = () => {
         )}
       </div>
 
-      <div className="flex w-full max-w-md mt-auto gap-4">
+      <div className="w-full grid grid-cols-2 mt-auto gap-4">
         <button 
           onClick={() => navigate('/arcade')}
           className="flex-1 h-14 bg-surface hover:bg-surface/80 text-white font-bold rounded-xl flex items-center justify-center gap-2 border border-white/10 active:scale-95 transition-all"
