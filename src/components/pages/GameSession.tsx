@@ -72,7 +72,13 @@ export const GameSession = () => {
     engine.submitAnswer(val);
     setCurrentInput(''); // Clear input after submit
   };
-
+  const getFontSize = (text: string) => {
+    const len = text.length;
+    if (len < 10) return "text-6xl"; // Standard (2 + 2)
+    if (len < 15) return "text-5xl"; // Medium (12 + 15 * 2)
+    if (len < 20) return "text-4xl"; // Long (12 + 15 * 2 - 5)
+    return "text-3xl";               // Very Long (Complex chains)
+  };
   return (
     <div className="flex flex-col h-full bg-background relative overflow-hidden">
       {engine.isPaused && (
@@ -116,7 +122,7 @@ export const GameSession = () => {
       <div className="flex-1 flex flex-col items-center justify-center relative z-10">
         
         <div className={cn(
-          "text-6xl font-mono font-black text-white mb-8 transition-transform",
+          `whitespace-nowrap font-mono font-black text-white mb-8 transition-transform ${engine.problem?.display ? getFontSize(engine.problem?.display) : ''}`,
           engine.shakeScreen ? "animate-shake text-red-500" : ""
         )}>
           {engine.problem?.display || "..."}

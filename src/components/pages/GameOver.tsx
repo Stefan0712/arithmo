@@ -39,6 +39,8 @@ const GameOver = () => {
         fetchGameData();
     },[]);
 
+
+
     if (!gameData) return <div className="w-full h-full flex items-center justify-center"><h3>Loading...</h3></div>
 
     return (
