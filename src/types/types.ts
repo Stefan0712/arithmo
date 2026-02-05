@@ -16,6 +16,7 @@ export interface ArcadeMode {
     isPro: boolean;
     cost?: number;
     bestScore?: number;
+    url?: string;
 }
 
 export interface LeaguePlayer {
