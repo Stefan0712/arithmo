@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getOrCreateUser } from './db/db';
 import { CustomGamePage } from './components/pages/CustomGamePage';
 import { GameSession } from './components/pages/GameSession';
-import GameOver from './components/pages/Gameover';
+import GameOver from './components/pages/GameOver';
 
 const SettingsPage = () => <div className="p-10">Settings Content</div>;
 
