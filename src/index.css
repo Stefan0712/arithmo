@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  
+  --color-background: #09090b; /* Zinc 950 (Deep Dark) */
+  --color-surface: #18181b;    /* Zinc 900 (Panel/Card) */
+  --color-border: #27272a;     /* Zinc 800 (Borders) */
+  --color-muted: #a1a1aa;      /* Zinc 400 (Subtitles) */
+
+  --color-primary: #6366f1;           
+  --color-primary-foreground: #ffffff; 
+
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: '"JetBrains Mono"', monospace;
+
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+}
