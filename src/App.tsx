@@ -9,6 +9,7 @@ import { getOrCreateUser } from './db/db';
 import { CustomGamePage } from './components/pages/CustomGamePage';
 import { GameSession } from './components/pages/GameSession';
 import GameOver from './components/pages/GameOver';
+import Menu from './components/pages/Menu';
 
 const SettingsPage = () => <div className="p-10">Settings Content</div>;
 
@@ -32,6 +33,8 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/custom-game" element={<CustomGamePage />} />
           <Route path="/gameover/:id" element={<GameOver />} />
+          <Route path="/menu" element={<Menu />}/>
+          
         </Route>
 
         <Route element={<GameLayout />}>

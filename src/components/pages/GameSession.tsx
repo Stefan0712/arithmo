@@ -96,7 +96,7 @@ export const GameSession = () => {
             {engine.timeLeft !== null && (
               <>
                 <Clock size={20} className={engine.timeLeft < 10 ? "text-red-500 animate-pulse" : "text-muted"} />
-                <span className={cn("font-mono text-xl font-bold pt-2", engine.timeLeft < 10 ? "text-red-500" : "text-white")}>
+                <span className={cn("font-mono text-xl font-bold pt-2", engine.timeLeft < 10 ? "text-red-500" : "text-muted")}>
                   {engine.timeLeft}s
                 </span>
               </>
@@ -110,19 +110,19 @@ export const GameSession = () => {
 
         <div className="flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Score</span>
-          <span className="font-mono text-3xl font-black text-white">{engine.score}</span>
+          <span className="font-mono text-3xl font-black text-muted">{engine.score}</span>
         </div>
 
         <div className="flex items-start pt-2 justify-end gap-1 w-24">
           <button onClick={engine.togglePause}>
-            <Pause className='text-white' />
+            <Pause className='text-muted' />
           </button>
         </div>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center relative z-10">
         
         <div className={cn(
-          `whitespace-nowrap font-mono font-black text-white mb-8 transition-transform ${engine.problem?.display ? getFontSize(engine.problem?.display) : ''}`,
+          `whitespace-nowrap font-mono font-black text-muted mb-8 transition-transform ${engine.problem?.display ? getFontSize(engine.problem?.display) : ''}`,
           engine.shakeScreen ? "animate-shake text-red-500" : ""
         )}>
           {engine.problem?.display || "..."}

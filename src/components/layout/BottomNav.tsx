@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Map, Gamepad2, Trophy, Settings } from 'lucide-react';
+import { Map, Gamepad2, Trophy, Menu } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export const BottomNav = () => {
@@ -7,7 +7,7 @@ export const BottomNav = () => {
     { label: 'Learning', icon: Map, path: '/saga' },
     { label: 'Arcade', icon: Gamepad2, path: '/arcade' },
     { label: 'Events', icon: Trophy, path: '/events' },
-    { label: 'Menu', icon: Settings, path: '/settings' },
+    { label: 'Menu', icon: Menu, path: '/menu' },
   ];
 
   return (
@@ -19,12 +19,12 @@ export const BottomNav = () => {
           className={({ isActive }) => clsx(
             "flex flex-col items-center justify-center w-16 h-16 rounded-xl transition-all duration-200 active:scale-95",
             isActive 
-              ? "text-cyber-cyan" 
-              : "text-slate-500 hover:text-slate-300"
+              ? "text-cyber-cyan text-nav-active" 
+              : "text-slate-500 hover:text-slate-300 text-nav-inactive"
           )}
         >
-          <item.icon size={24} strokeWidth={2.5} />
-          <span className="text-[10px] font-bold mt-1 tracking-wide">
+          <item.icon size={24} className='nav-icon' strokeWidth={2.5} />
+          <span className="text-[10px] text-primary font-bold mt-1 tracking-wide">
             {item.label}
           </span>
         </NavLink>

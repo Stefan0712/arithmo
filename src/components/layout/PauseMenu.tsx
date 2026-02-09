@@ -16,21 +16,21 @@ export const PauseMenu = ({ onResume, onQuit, config, score, timeLeft }: PauseMe
         <div className="w-full h-full p-6 flex flex-col justify-center items-center text-center">
             
             <div className="w-full mt-auto mb-6">
-                <h2 className="text-4xl font-black text-white tracking-tight">PAUSED</h2>
+                <h2 className="text-4xl font-black text-muted tracking-tight">PAUSED</h2>
                 <p className="text-muted font-medium">{config.modeName}</p>
             </div>
             <div className="flex items-center justify-center] gap-4">
             <div className="bg-surface/50 p-4 rounded-xl border border-white/5 flex flex-col items-center">
                 <Trophy size={20} className="text-yellow-400 mb-2" />
                 <span className="text-xs font-bold text-muted uppercase">Current Score</span>
-                <span className="text-2xl font-mono font-bold text-white">{score}</span>
+                <span className="text-2xl font-mono font-bold text-muted">{score}</span>
             </div>
             
             {config.timerMode !== 'NONE' && (
                 <div className="bg-surface/50 p-4 rounded-xl border border-white/5 flex flex-col items-center">
                 <Clock size={20} className="text-blue-400 mb-2" />
                 <span className="text-xs font-bold text-muted uppercase">Time Left</span>
-                <span className="text-2xl font-mono font-bold text-white">
+                <span className="text-2xl font-mono font-bold text-muted">
                     {timeLeft !== null ? `${timeLeft}s` : '--'}
                 </span>
                 </div>
@@ -48,7 +48,7 @@ export const PauseMenu = ({ onResume, onQuit, config, score, timeLeft }: PauseMe
 
                 <button 
                     onClick={onQuit}
-                    className="w-full h-14 bg-surface text-muted hover:text-white font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
+                    className="w-full h-14 bg-surface text-white hover:text-white font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
                 >
                     <Home size={20} />
                     QUIT TO MENU

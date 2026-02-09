@@ -38,7 +38,7 @@ const mockModes: ArcadeMode[] = [
 
 export default function ArcadeScreen() {
     return (
-        <div className="h-full overflow-y-auto no-scrollbar bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-6 py-8">
+        <div className="h-full overflow-y-auto no-scrollbar bg-gradient-to-b from-surface to-primary px-6 py-8">
             <div className="max-w-md mx-auto">
                 <h2 className="text-2xl font-bold text-white mb-6 text-center">Arcade</h2>
 

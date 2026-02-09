@@ -15,7 +15,7 @@ const Lives: React.FC<LivesProps> = ({hasLivesLimit, setHasLivesLimit, livesValu
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Heart size={20} className={hasLivesLimit ? "text-red-500" : "text-muted"} />
-              <span className={cn("font-bold text-sm", hasLivesLimit ? "text-white" : "text-muted")}>
+              <span className={"font-bold text-sm text-muted"}>
                 Lives
               </span>
             </div>
@@ -35,7 +35,7 @@ const Lives: React.FC<LivesProps> = ({hasLivesLimit, setHasLivesLimit, livesValu
                   onChange={(e) => setLivesValue(Number(e.target.value))}
                   className="flex-1 h-2 bg-background rounded-lg appearance-none cursor-pointer accent-red-500"
                 />
-                <div className="w-12 h-10 bg-background rounded-lg flex items-center justify-center border border-white/10 font-mono font-bold text-white">
+                <div className="w-12 h-10 bg-background rounded-lg flex items-center justify-center border border-white/10 font-mono font-bold text-muted">
                   {livesValue}
                 </div>
              </div>
