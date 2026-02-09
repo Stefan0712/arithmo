@@ -21,7 +21,7 @@ interface DifficultyProps {
 const Difficulty: React.FC<DifficultyProps> = ({isAdvanced, difficulty, setDifficulty, operandCount, setOperandCount, allowMixedOps, setAllowMixedOps, inputMin, resultMax, setInputMax, inputMax, setInputMin, setResultMax}) => {
 
     return (
-        <div className="bg-surface/50 border border-white/5 rounded-2xl p-5 space-y-6">
+        <div className="bg-arcade-card border border-border rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 p-5 space-y-6">
         
         {/* A. SIMPLE MODE: Difficulty Slider */}
         {!isAdvanced && (
@@ -34,7 +34,7 @@ const Difficulty: React.FC<DifficultyProps> = ({isAdvanced, difficulty, setDiffi
               type="range" min="1" max="10" 
               value={difficulty} 
               onChange={(e) => setDifficulty(Number(e.target.value))}
-              className="w-full h-2 bg-surface rounded-lg appearance-none cursor-pointer accent-primary"
+              className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer accent-primary"
             />
             <div className="flex justify-between text-[10px] text-muted font-bold">
               <span>EASY</span>
@@ -60,7 +60,7 @@ const Difficulty: React.FC<DifficultyProps> = ({isAdvanced, difficulty, setDiffi
                 type="range" min="2" max="5" 
                 value={operandCount} 
                 onChange={(e) => setOperandCount(Number(e.target.value))}
-                className="w-full h-2 bg-background rounded-lg appearance-none cursor-pointer accent-primary"
+                className="w-full h-2 bg-input text-title border-transparent focus:border-primary rounded-lg appearance-none cursor-pointer accent-primary"
               />
               <p className="text-xs text-muted text-right">Example: {Array(operandCount).fill('12').join(' + ')}</p>
             </div>
@@ -85,16 +85,16 @@ const Difficulty: React.FC<DifficultyProps> = ({isAdvanced, difficulty, setDiffi
                <div className="space-y-2">
                  <label className="text-[10px] font-bold text-muted uppercase">Number Range</label>
                  <div className="flex items-center gap-2">
-                   <input type="number" value={inputMin} onChange={e => setInputMin(Number(e.target.value))} className="w-full bg-background border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
+                   <input type="number" value={inputMin} onChange={e => setInputMin(Number(e.target.value))} className="w-full bg-input text-title border-transparent focus:border-primary border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
                    <span className="text-muted">-</span>
-                   <input type="number" value={inputMax} onChange={e => setInputMax(Number(e.target.value))} className="w-full bg-background border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
+                   <input type="number" value={inputMax} onChange={e => setInputMax(Number(e.target.value))} className="w-full bg-input text-title border-transparent focus:border-primary border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
                  </div>
                </div>
                
                {/* Result Max */}
                <div className="space-y-2">
                  <label className="text-[10px] font-bold text-muted uppercase">Max Result</label>
-                 <input type="number" value={resultMax} onChange={e => setResultMax(Number(e.target.value))} className="w-full bg-background border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
+                 <input type="number" value={resultMax} onChange={e => setResultMax(Number(e.target.value))} className="w-full bg-input text-title border-transparent focus:border-primary border border-white/10 rounded-lg p-2 text-center font-mono font-bold" />
                </div>
             </div>
 

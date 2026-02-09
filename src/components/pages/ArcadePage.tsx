@@ -40,7 +40,7 @@ export default function ArcadeScreen() {
     return (
         <div className="h-full overflow-y-auto no-scrollbar bg-gradient-to-b from-surface to-primary px-6 py-8">
             <div className="max-w-md mx-auto">
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">Arcade</h2>
+                <h2 className="text-2xl font-bold text-title font-black mb-6 text-center">Arcade</h2>
 
                 <div className="space-y-4">
                     {mockModes.map((mode, index) => (
@@ -83,11 +83,11 @@ function ModeCard({ mode, index }: ModeCardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             disabled={mode.isLocked}
-            className={`w-full p-6 rounded-2xl border-2 transition-all active:scale-95 touch-target text-left ${isPvP
-                ? 'bg-slate-800 border-slate-600 min-h-[180px]'
+            className={`w-full bg-arcade-card p-6 rounded-2xl border-border border-2 transition-all shadow-sm hover:shadow-md hover:border-primary/50 active:scale-95 touch-target text-left ${isPvP
+                ? 'bg-slate-800 min-h-[180px]'
                 : mode.isLocked
-                    ? 'bg-slate-800/30 border-slate-700/50 opacity-50 cursor-not-allowed'
-                    : 'bg-slate-800/50 border-slate-600'
+                    ? 'opacity-50 cursor-not-allowed'
+                    : ''
                 }`}
         >
             <div className="flex items-start justify-between mb-4">

@@ -4,10 +4,10 @@ import { useUser } from '../../hooks/useUser';
 export const Header = () => {
   const { user, level, progressToNext, loading } = useUser();
 
-  if (loading || !user) return <div className="h-16 bg-surface/80" />; // Empty placeholder
+  if (loading || !user) return <div className="h-16 bg-header border-b border-border backdrop-blur-md" />; // Empty placeholder
 
   return (
-    <header className="h-16 px-4 flex items-center justify-between bg-surface/80 backdrop-blur-md border-b border-border sticky top-0 z-40">
+    <header className="h-16 px-4 flex items-center justify-between bg-header border-b border-border backdrop-blur-md backdrop-blur-md border-b border-border sticky top-0 z-40">
       
       <div className="flex items-center gap-3">
         <div className="relative w-10 h-10 flex items-center justify-center">
@@ -18,7 +18,7 @@ export const Header = () => {
              }} 
            />
            <div className="absolute inset-[2px] bg-surface rounded-md flex items-center justify-center">
-             <span className="font-bold text-white text-sm">{level}</span>
+             <span className="font-bold text-muted text-sm">{level}</span>
            </div>
         </div>
 
@@ -26,7 +26,7 @@ export const Header = () => {
           <span className="text-[10px] text-muted font-bold tracking-wider uppercase">
             {user.username}
           </span>
-          <span className="text-sm font-bold text-white">
+          <span className="text-sm font-bold text-muted">
             {user.progress.currentLeagueId.replace('_', ' ').toUpperCase()}
           </span>
         </div>
@@ -37,7 +37,7 @@ export const Header = () => {
       >
         <div className="flex items-center gap-1.5">
           <Zap size={16} className="text-yellow-400 fill-yellow-400" />
-          <span className="font-mono text-lg font-bold text-white tracking-tight">
+          <span className="font-mono text-lg font-bold text-muted tracking-tight">
             {user.brainCells}
           </span>
         </div>

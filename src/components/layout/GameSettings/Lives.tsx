@@ -11,7 +11,7 @@ interface LivesProps {
 const Lives: React.FC<LivesProps> = ({hasLivesLimit, setHasLivesLimit, livesValue, setLivesValue}) => {
 
     return (
-        <div className={cn("p-4 rounded-xl border transition-colors space-y-3", hasLivesLimit ? "bg-surface border-red-500/30" : "bg-surface/50 border-transparent")}>
+        <div className={cn("bg-arcade-card border border-border rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 p-5 space-y-6", hasLivesLimit ? "bg-surface border-red-500/30" : "bg-surface/50 border-transparent")}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Heart size={20} className={hasLivesLimit ? "text-red-500" : "text-muted"} />
@@ -33,9 +33,9 @@ const Lives: React.FC<LivesProps> = ({hasLivesLimit, setHasLivesLimit, livesValu
                   type="range" min="1" max="10"
                   value={livesValue} 
                   onChange={(e) => setLivesValue(Number(e.target.value))}
-                  className="flex-1 h-2 bg-background rounded-lg appearance-none cursor-pointer accent-red-500"
+                  className="flex-1 h-2 bg-input border-border rounded-lg appearance-none cursor-pointer accent-red-500"
                 />
-                <div className="w-12 h-10 bg-background rounded-lg flex items-center justify-center border border-white/10 font-mono font-bold text-muted">
+                <div className="w-12 h-10 bg-input rounded-lg flex items-center justify-center border font-mono font-bold text-muted">
                   {livesValue}
                 </div>
              </div>

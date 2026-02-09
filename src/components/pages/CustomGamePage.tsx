@@ -80,7 +80,7 @@ export const CustomGamePage = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-white">Custom Game</h1>
+          <h1 className="text-2xl font-black text-muted">Custom Game</h1>
           <p className="text-muted">Design your game.</p>
         </div>
         <button 

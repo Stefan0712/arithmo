@@ -11,7 +11,7 @@ export const BottomNav = () => {
   ];
 
   return (
-    <nav className="h-20 border-t border-white/5 flex items-center justify-around px-2 z-50 pb-safe bg-surface">
+    <nav className="h-20 border-t border-border flex items-center justify-around px-2 z-50 pb-safe bg-navbar">
       {navItems.map((item) => (
         <NavLink
           key={item.path}
@@ -19,8 +19,8 @@ export const BottomNav = () => {
           className={({ isActive }) => clsx(
             "flex flex-col items-center justify-center w-16 h-16 rounded-xl transition-all duration-200 active:scale-95",
             isActive 
-              ? "text-cyber-cyan text-nav-active" 
-              : "text-slate-500 hover:text-slate-300 text-nav-inactive"
+              ? "text-cyber-cyan text-primary" 
+              : "text-muted hover:text-title"
           )}
         >
           <item.icon size={24} className='nav-icon' strokeWidth={2.5} />

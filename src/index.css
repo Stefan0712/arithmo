@@ -1,49 +1,100 @@
 @import "tailwindcss";
 
-:root {
-  /* --- LIGHT MODE (Default) --- */
-  --bg-color: #ffffff;        /* Pure White */
-  --surface-color: #cccccf;   /* Zinc 100 (Light Gray) */
-  --border-color: #e4e4e7;    /* Zinc 200 */
-  --muted-color: #71717a;     /* Zinc 500  */
-  
-  --primary-color: #4f46e5;   /* Indigo 600*/
-  --primary-fg: #ffffff;      /* White text on button */
-  --text-color: black;
+/* -------------------------------------------------------------------------- */
+/* THEME TOKENS                               */
+/* -------------------------------------------------------------------------- */
 
-  --nav-icon-active: #4f46e5;   /* Indigo 600 */
-  --nav-icon-inactive: #a1a1aa; /* Zinc 400 */
+:root {
+  /* --- LIGHT MODE (Material/Apple Style) --- */
+  
+  /* BASES */
+  --bg-app: #f4f4f5;          /* Zinc 100 - The main canvas behind everything */
+  --bg-surface: #ffffff;      /* White - Standard cards/panels */
+  --bg-subtle: #fafafa;       /* Zinc 50 - Very subtle backgrounds */
+
+  /* SPECIFIC COMPONENT BACKGROUNDS */
+  --bg-header: rgba(255, 255, 255, 0.85); /* Glassmorphic White */
+  --bg-navbar: #ffffff;       /* Solid White bottom bar */
+  --bg-arcade-card: #ffffff;  /* Game modes need to pop */
+  --bg-input: #d5d5d6;
+
+  /* TYPOGRAPHY */
+  --text-title: #18181b;      /* Zinc 900 - High contrast headers */
+  --text-body: #3f3f46;       /* Zinc 700 - Standard reading text */
+  --text-muted: #71717a;      /* Zinc 500 - Subtitles/Metadata */
+  --text-disabled: #a1a1aa;   /* Zinc 400 */
+
+  /* BORDERS & SEPARATORS */
+  --border-main: #e4e4e7;     /* Zinc 200 - Standard definition */
+  --border-faint: #f4f4f5;    /* Zinc 100 - Subtle dividers */
+
+  /* BRANDING */
+  --color-brand: #4f46e5;     /* Indigo 600 */
+  --color-brand-fg: #ffffff;  
+  --color-danger: #ef4444;    /* Red 500 */
 }
 
 .dark {
-  /* --- DARK MODE --- */
-  --bg-color: #09090b;        /* Zinc 950 */
-  --surface-color: #18181b;   /* Zinc 900 */
-  --border-color: #27272a;    /* Zinc 800 */
-  --muted-color: #a1a1aa;     /* Zinc 400 */
-  
-  --primary-color: #6366f1;   /* Indigo 500 */
-  --primary-fg: #ffffff;
-  --text-color: white;
+  /* BASES */
+  --bg-app: #09090b;          /* Zinc 950 - Deep black canvas */
+  --bg-surface: #18181b;      /* Zinc 900 - Cards */
+  --bg-subtle: #27272a;       /* Zinc 800 */
 
-  --nav-icon-active: #818cf8;   /* Indigo 400 */
-  --nav-icon-inactive: #52525b; /* Zinc 600 */
+  /* SPECIFIC COMPONENT BACKGROUNDS */
+  --bg-header: rgba(9, 9, 11, 0.8); /* Glassmorphic Black */
+  --bg-navbar: #09090b;
+  --bg-arcade-card: #18181b;  /* Zinc 900 */
+  --bg-input: #000000;     
+
+  /* TYPOGRAPHY */
+  --text-title: #ffffff;      /* White */
+  --text-body: #e4e4e7;       /* Zinc 200 */
+  --text-muted: #a1a1aa;      /* Zinc 400 */
+  --text-disabled: #52525b;   /* Zinc 600 */
+
+  /* BORDERS */
+  --border-main: #27272a;     /* Zinc 800 */
+  --border-faint: #18181b;    /* Zinc 900 */
+
+  /* BRANDING */
+  --color-brand: #6366f1;     /* Indigo 500 */
+  --color-brand-fg: #ffffff;
+  --color-danger: #f87171;    /* Red 400 */
 }
 
 @theme {
-  --color-background: var(--bg-color);
-  --color-surface: var(--surface-color);
-  --color-border: var(--border-color);
-  --color-muted: var(--muted-color);
+  /* Backgrounds */
+  --color-background: var(--bg-app);
+  --color-surface: var(--bg-surface);
+  --color-surface-subtle: var(--bg-subtle);
+  
+  /* Semantic Backgrounds */
+  --color-header: var(--bg-header);
+  --color-navbar: var(--bg-navbar);
+  --color-arcade-card: var(--bg-arcade-card);
+  --color-input: var(--bg-input);
 
-  --color-primary: var(--primary-color);
-  --color-primary-foreground: var(--primary-fg);
+  /* Typography */
+  --color-title: var(--text-title);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-disabled: var(--text-disabled);
 
+  /* Borders */
+  --color-border: var(--border-main);
+  --color-border-faint: var(--border-faint);
+
+  /* Functional */
+  --color-primary: var(--color-brand);
+  --color-primary-foreground: var(--color-brand-fg);
+  --color-danger: var(--color-danger);
+
+  /* Utils */
   --font-sans: 'Outfit', sans-serif;
   --font-mono: '"JetBrains Mono"', monospace;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-
+  
   @keyframes shake {
     10%, 90% { transform: translate3d(-1px, 0, 0); }
     20%, 80% { transform: translate3d(2px, 0, 0); }

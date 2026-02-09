@@ -14,7 +14,7 @@ interface TimerProps {
 const Timer: React.FC<TimerProps> = ({setTimeValue, setTimerMode, isAdvanced, timeValue, timerMode}) => {
 
     return (
-        <div className="p-4 rounded-xl bg-surface border border-white/5 space-y-4">
+        <div className="bg-arcade-card border border-border rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 p-5 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Clock size={20} className="text-primary" />
@@ -54,7 +54,7 @@ const Timer: React.FC<TimerProps> = ({setTimeValue, setTimerMode, isAdvanced, ti
                   type="range" min="5" max="300" step="5"
                   value={timeValue} 
                   onChange={(e) => setTimeValue(Number(e.target.value))}
-                  className="flex-1 h-2 text-muted bg-background rounded-lg appearance-none cursor-pointer accent-primary"
+                  className="flex-1 h-2 text-muted bg-input rounded-lg appearance-none cursor-pointer accent-primary"
                 />
                 <div className="w-16 h-10 bg-background text-muted rounded-lg flex items-center justify-center border border-white/10 font-mono font-bold">
                   {timeValue}s
