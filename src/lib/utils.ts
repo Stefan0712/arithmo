@@ -29,3 +29,14 @@ export const getProgressToNextLevel = (xp: number) => {
   // Returns a percentage (0 to 100) for the UI progress bar
   return Math.min(100, Math.max(0, (currentProgress / totalNeeded) * 100));
 };
+
+
+export const formatDate = (date: Date | string | number): string => {
+  const d = new Date(date);
+  
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',   // "12"
+    month: 'short',   // "Jan"
+    year: 'numeric'   // "2024"
+  });
+};
