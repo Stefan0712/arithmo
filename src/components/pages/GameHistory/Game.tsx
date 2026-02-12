@@ -92,14 +92,12 @@ export const GameHistoryItem = ({ log }: GameHistoryItemProps) => {
               <span className="text-xs text-muted flex items-center gap-2"><XCircle size={14} className="text-red-500"/> Wrong</span>
               <span className="font-mono font-bold text-title">{log.wrongAnswers}</span>
             </div>
-            
             {log.config.startingLives !== null && (
                <div className="bg-background/50 p-3 rounded-lg flex items-center justify-between border border-border">
                 <span className="text-xs text-muted flex items-center gap-2"><Heart size={14} className="text-red-500"/> Lives Left</span>
                 <span className="font-mono font-bold text-title">{log.livesLeft} / {log.config.startingLives}</span>
               </div>
             )}
-            
             {log.config.timerMode === 'TOTAL' && (
               <div className="bg-background/50 p-3 rounded-lg flex items-center justify-between border border-border">
                 <span className="text-xs text-muted flex items-center gap-2"><Clock size={14} className="text-blue-500"/> Time Left</span>
@@ -107,10 +105,8 @@ export const GameHistoryItem = ({ log }: GameHistoryItemProps) => {
               </div>
             )}
           </div>
-
           <div className="space-y-3 mb-6">
             <h4 className="text-xs font-bold text-muted uppercase tracking-wider">Configuration</h4>
-            
             <div className="flex gap-2">
               {log.config.allowedOps.map(op => (
                 <span key={op} className="w-8 h-8 rounded bg-background border border-border flex items-center justify-center font-mono font-bold text-title text-lg">

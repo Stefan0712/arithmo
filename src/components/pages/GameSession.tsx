@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, Clock, Pause } from 'lucide-react';
+import { Heart, Clock, Pause, Infinity as InfinityIcon } from 'lucide-react';
 import { useGameEngine } from '../../hooks/useGameEngine';
 import { Numpad } from '../game/Numpad';
 import { cn } from '../../lib/utils';
@@ -104,7 +104,7 @@ export const GameSession = () => {
           </div>
           <div className="flex items-center gap-2 w-24">
             <Heart size={24} className="text-red-500 fill-red-500" />
-            <p className='text-lg font-black text-red-500 ml-1'>{engine.lives}</p>
+            <p className='text-lg font-black text-red-500 ml-1'>{engine.lives ?? <InfinityIcon />}</p>
           </div>
         </div>
 

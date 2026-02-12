@@ -9,7 +9,7 @@ const Menu = () => {
     const [currentTheme, setCurrentTheme] = useState(localStorage.getItem("theme") ?? 'light');
 
     const handleChangeTheme = (theme: string) =>{
-        toggleTheme();
+        toggleTheme(theme);
         setCurrentTheme(theme)
     }
     return (

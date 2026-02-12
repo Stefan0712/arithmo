@@ -1,10 +1,10 @@
 export type Operation = 'ADD' | 'SUB' | 'MUL' | 'DIV';
-export type GameMode = 'SURVIVAL' | 'TIME_ATTACK' | 'CUSTOM' | 'PVP' | 'SAGA';
+export type GameMode = 'SURVIVAL' | 'TIME_ATTACK' | 'CUSTOM' | 'PVP' | 'SAGA' | 'INFINITE';
 export type TimerMode = 'TOTAL' | 'PER_QUESTION' | 'NONE';
 
 export interface GameConfig {
   modeName: string;
-  mode: 'CUSTOM' | 'SURVIVAL' | 'TIME_ATTACK' | "ZEN"; // etc
+  mode: GameMode; // etc
   
   // Math Rules
   allowedOps: Operation[];
@@ -92,7 +92,7 @@ export const PRESETS: Record<string, GameConfig> = {
   // Goal: Debugging or Relaxing.
   ZEN: {
     modeName: 'Zen Mode',
-    mode: 'ZEN',
+    mode: 'INFINITE',
     
     // Math: Hard (Level 6) to test complex generation
     allowedOps: ['ADD', 'SUB', 'MUL', 'DIV'],

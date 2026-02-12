@@ -48,7 +48,7 @@ export const PauseMenu = ({ onResume, onQuit, config, score, timeLeft }: PauseMe
 
                 <button 
                     onClick={onQuit}
-                    className="w-full h-14 bg-surface text-white hover:text-white font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
+                    className="w-full h-14 bg-surface text-body hover:text-body font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
                 >
                     <Home size={20} />
                     QUIT TO MENU

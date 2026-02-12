@@ -19,7 +19,7 @@ export const Numpad = ({ onInput, onClear, onSubmit, disabled }: NumpadProps) =>
           key={num}
           onClick={() => onInput(num)}
           disabled={disabled}
-          className={`${btnClass} bg-surface text-white border border-white/5 hover:bg-white/5`}
+          className={`${btnClass} bg-surface text-body border border-white/5 hover:bg-white/5`}
         >
           {num}
         </button>
@@ -36,7 +36,7 @@ export const Numpad = ({ onInput, onClear, onSubmit, disabled }: NumpadProps) =>
       <button
         onClick={() => onInput(0)}
         disabled={disabled}
-        className={`${btnClass} bg-surface text-white border border-white/5`}
+        className={`${btnClass} bg-surface text-body border border-white/5`}
       >
         0
       </button>
