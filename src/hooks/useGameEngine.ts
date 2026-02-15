@@ -151,7 +151,7 @@ export const useGameEngine = (config: GameConfig) => {
       // Check if enabled (threshold > 0) AND if we hit the interval
       if (config.livesBonusThreshold > 0 && newStreak % config.livesBonusThreshold === 0) {
         if (lives !== null) {
-          setLives(l => l + config.livesBonusAmount);
+          setLives(l => (l !== null ? l + config.livesBonusAmount : null));
           // TODO: Add a text showing the addition of time
         }
       }
