@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Heart, Clock, Pause, Infinity as InfinityIcon, Flame } from 'lucide-react';
 import { useGameEngine } from '../../hooks/useGameEngine';
 import { Numpad } from '../game/Numpad';
 import { cn } from '../../lib/utils';
-import { PRESETS, type GameLog } from '../../types/game';
+import { type GameLog } from '../../types/game';
 import { db } from '../../db/db';
 import ObjectID from 'bson-objectid';
 import { PauseMenu } from '../layout/PauseMenu';
 
 export const GameSession = () => {
-  const { modeId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
 
   // Initialize Engine
-  const config = location.state?.config || PRESETS[modeId?.toUpperCase() || 'SURVIVAL'];
+  const config = location.state?.config;
   const engine = useGameEngine(config);
   
   // What the user types
@@ -63,7 +62,7 @@ export const GameSession = () => {
       return () => clearTimeout(timer);
     }
   }, [engine.isGameOver]);
-  
+
   const handleDigit = (num: number) => {
     if (currentInput.length < 6) { // Max 6 digits
       setCurrentInput((prev) => prev + num.toString());
