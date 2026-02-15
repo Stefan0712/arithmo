@@ -45,6 +45,7 @@ export interface GameLog {
   livesLeft: number;
   correctAnswers: number;
   wrongAnswers: number;
+  topStreak: number;
 }
 
 export const PRESETS: Record<string, GameConfig> = {

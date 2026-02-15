@@ -11,12 +11,15 @@ import { GameSession } from './components/pages/GameSession';
 import GameOver from './components/pages/GameOver';
 import Menu from './components/pages/Menu';
 import GamesHistory from './components/pages/GameHistory/GamesHistory';
+import { useTheme } from './hooks/useTheme';
 
 const SettingsPage = () => <div className="p-10">Settings Content</div>;
 
 
 
 function App() {
+  
+  useTheme();
 
   useEffect(() => {
     getOrCreateUser().catch(console.error);

@@ -29,7 +29,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     description: '3 lives. Unlimited time. How long can you last?',
     icon: Flame,
     colorClass: 'text-orange-500',
-    cost: 1,
+    cost: 0,
     config: {
       modeName: 'Survival',
       mode: 'SURVIVAL',
@@ -44,11 +44,14 @@ export const DEFAULT_MODES: GameModeDetail[] = [
       // Time Rules: No clock, just don't die
       timerMode: 'NONE',
       timeValue: null,
-      timeBonus: 0,
+      timeBonusAmount: 0,
+      timeBonusThreshold: 0,
       timePenalty: 0,
 
       // Life Rules: The core mechanic
-      startingLives: 3
+      startingLives: 3,
+      livesBonusAmount: 0,
+      livesBonusThreshold: 0,
     }
   },
   {
@@ -56,7 +59,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     title: 'Time Attack',
     isPro: false,
     isLocked: false,
-    cost: 1,
+    cost: 0,
     url:'/play/custom',
     description: '60 seconds. High speed. Infinite lives.',
     icon: Zap,
@@ -75,11 +78,14 @@ export const DEFAULT_MODES: GameModeDetail[] = [
       // Time Rules: 60s Bank + Bonus for speed
       timerMode: 'TOTAL',
       timeValue: 60,
-      timeBonus: 2,   // +2s per correct answer
+      timeBonusAmount: 2,   // +2s per correct answer
+      timeBonusThreshold: 1,
       timePenalty: 5, // -5s per wrong answer
 
       // Life Rules: You can't die, only run out of time
-      startingLives: null
+      startingLives: null,
+      livesBonusAmount: 0,
+      livesBonusThreshold: 0,
     }
   },
   {
@@ -89,7 +95,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     isLocked: false,
     url:'/play/custom',
     description: 'No lives. No timer. Just practice.',
-    cost: 1,
+    cost: 0,
     icon: Leaf,
     colorClass: 'text-emerald-500',
     config: {
@@ -106,9 +112,12 @@ export const DEFAULT_MODES: GameModeDetail[] = [
       // Rules: None
       timerMode: 'NONE',
       timeValue: null,
-      timeBonus: 0,
+      timeBonusAmount: 0,
+      timeBonusThreshold: 0,
       timePenalty: 0,
-      startingLives: null
+      startingLives: null,
+      livesBonusAmount: 0,
+      livesBonusThreshold: 0,
     }
   },
   {
@@ -118,7 +127,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     isLocked: false,
     url:'/custom-game',
     description: 'You make the rules.',
-    cost: 1,
+    cost: 0,
     icon: Leaf,
     colorClass: 'text-emerald-500',
     config: null

@@ -5,7 +5,7 @@ import { DEFAULT_MODES, type GameModeDetail } from '../../lib/modes';
 
 export default function ArcadeScreen() {
     return (
-        <div className="h-full overflow-y-auto no-scrollbar bg-gradient-to-b from-surface to-primary px-6 py-8">
+        <div className="h-full overflow-y-auto no-scrollbar px-6 py-8">
             <div className="max-w-md mx-auto">
                 <h2 className="text-2xl font-bold text-title font-black mb-6 text-center">Arcade</h2>
 

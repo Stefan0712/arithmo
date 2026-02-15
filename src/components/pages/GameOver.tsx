@@ -9,7 +9,8 @@ import {
     Heart, 
     Clock, 
     RotateCcw, 
-    Home 
+    Home, 
+    Flame
 } from 'lucide-react';
 
 
@@ -105,6 +106,15 @@ const GameOver = () => {
             </span>
           </div>
         )}
+        <div className="bg-surface/50 p-4 rounded-xl border border-white/5 flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-1 text-blue-400">
+            <Flame size={18} />
+            <span className="text-xs font-bold uppercase">Top Streak</span>
+          </div>
+          <span className="text-2xl font-mono font-bold text-white">
+            {gameData.topStreak || 0}
+          </span>
+        </div>
       </div>
 
       <div className="w-full grid grid-cols-2 mt-auto gap-4">

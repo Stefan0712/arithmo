@@ -16,7 +16,7 @@ const mockLevels: Level[] = [
 
 export default function SagaMapScreen() {
     return (
-        <div className="h-full overflow-y-auto no-scrollbar bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-6 py-8">
+        <div className="h-full overflow-y-auto no-scrollbar px-6 py-8">
             <div className="max-w-md mx-auto">
                 <h2 className="text-2xl font-bold text-white mb-6 text-center">Your Journey</h2>
 

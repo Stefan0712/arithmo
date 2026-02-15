@@ -35,31 +35,35 @@ export const GameSession = () => {
     }
   }
 
+
+  const handleEnd = () => {
+    const gameData = {
+      _id: new ObjectID().toHexString(),
+      timestamp: new Date(),
+      mode: config.mode,
+      config,
+      score: engine.score,
+      timeLeft: engine.timeLeft || 0,
+      livesLeft: engine.lives || 0,
+      correctAnswers: engine.correctAnswers,
+      wrongAnswers: engine.wrongAnswers,
+      topStreak: engine.currentStreak
+    };
+    saveGame(gameData);
+    navigate(`/gameover/${gameData._id}`);
+  }
+
   // Handle Game Over
   useEffect(() => {
     if (engine.isGameOver) {
       // TODO: Save score to Dexie DB here!
       const timer = setTimeout(() => {
-        const gameData = {
-          _id: new ObjectID().toHexString(),
-          timestamp: new Date(),
-          mode: config.mode,
-          config,
-          score: engine.score,
-          timeLeft: engine.timeLeft || 0,
-          livesLeft: engine.lives || 0,
-          correctAnswers: engine.correctAnswers,
-          wrongAnswers: engine.wrongAnswers
-        };
-        saveGame(gameData);
-        navigate(`/gameover/${gameData._id}`);
+        handleEnd();
       }, 500);
       return () => clearTimeout(timer);
     }
   }, [engine.isGameOver]);
-
-
-
+  
   const handleDigit = (num: number) => {
     if (currentInput.length < 6) { // Max 6 digits
       setCurrentInput((prev) => prev + num.toString());
@@ -72,6 +76,7 @@ export const GameSession = () => {
     engine.submitAnswer(val);
     setCurrentInput(''); // Clear input after submit
   };
+
   const getFontSize = (text: string) => {
     const len = text.length;
     if (len < 10) return "text-6xl"; // Standard (2 + 2)
@@ -88,6 +93,7 @@ export const GameSession = () => {
           config={config}
           score={engine.score}
           timeLeft={engine.timeLeft}
+          onEnd={handleEnd}
         />
       )}
       <div className="h-20 px-6 flex mt-4 justify-between z-10">

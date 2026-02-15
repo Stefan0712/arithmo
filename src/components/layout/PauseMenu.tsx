@@ -1,15 +1,16 @@
-import { Play, Home, Clock, Trophy } from 'lucide-react';
+import { Play, Home, Clock, Trophy, Flag } from 'lucide-react';
 import type { GameConfig } from '../../types/game';
 
 interface PauseMenuProps {
   onResume: () => void;
   onQuit: () => void;
+  onEnd: () => void;
   config: GameConfig;
   score: number;
   timeLeft: number | null;
 }
 
-export const PauseMenu = ({ onResume, onQuit, config, score, timeLeft }: PauseMenuProps) => {
+export const PauseMenu = ({ onResume, onQuit, onEnd, config, score, timeLeft }: PauseMenuProps) => {
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-xl animate-in fade-in duration-200">
       
@@ -46,6 +47,13 @@ export const PauseMenu = ({ onResume, onQuit, config, score, timeLeft }: PauseMe
                     RESUME
                 </button>
 
+                <button 
+                    onClick={onEnd}
+                    className="w-full h-14 bg-red-900 text-body hover:text-body font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
+                >
+                    <Flag size={20} />
+                    END GAME
+                </button>
                 <button 
                     onClick={onQuit}
                     className="w-full h-14 bg-surface text-body hover:text-body font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 active:scale-95 transition-all"
