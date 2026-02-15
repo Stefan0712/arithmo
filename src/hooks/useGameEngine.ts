@@ -12,12 +12,14 @@ export const useGameEngine = (config: GameConfig) => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(config.startingLives);
   const [timeLeft, setTimeLeft] = useState(config.timeValue);
+  const [currentStreak, setCurrentStreak] = useState(0);
 
   // Game Stats
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+
   
-  // NEW: Per-Question Timer (for Blitz mode)
+  // Per-Question Timer (for Blitz mode)
   const [questionTimeLeft, setQuestionTimeLeft] = useState<number | null>(null);
 
   // The Current Problem
@@ -131,10 +133,27 @@ export const useGameEngine = (config: GameConfig) => {
     if (input === problem.answer) {
       // Correct answer
       setScore((s) => s + 10);
+
+      // Streak Logic
+      const newStreak = currentStreak + 1;
+      setCurrentStreak(newStreak);
       
-      // Global Time Bonus
-      if (timeLeft !== null && config.timeBonus > 0) {
-        setTimeLeft((t) => (t !== null ? t + config.timeBonus : t));
+      // Time Bonus
+      // Check if enabled (threshold > 0) AND if we hit the interval
+      if (config.timeBonusThreshold > 0 && newStreak % config.timeBonusThreshold === 0) {
+        if (config.timerMode === 'TOTAL') {
+          setTimeLeft(t => (t !== null ? t + config.timeBonusAmount : null));
+          // TODO: Add a text showing the addition of time
+        }
+      }
+
+      // Life Bonus
+      // Check if enabled (threshold > 0) AND if we hit the interval
+      if (config.livesBonusThreshold > 0 && newStreak % config.livesBonusThreshold === 0) {
+        if (lives !== null) {
+          setLives(l => l + config.livesBonusAmount);
+          // TODO: Add a text showing the addition of time
+        }
       }
 
       // TODO: Add changing difficulties as you win progress
@@ -152,7 +171,7 @@ export const useGameEngine = (config: GameConfig) => {
       // Wrong answer
       setShakeScreen(true);
       setTimeout(() => setShakeScreen(false), 500);
-
+      setCurrentStreak(0)
       // Lose Life
       if (lives !== null) {
         setLives((prev) => {
@@ -194,6 +213,7 @@ export const useGameEngine = (config: GameConfig) => {
     problem,
     shakeScreen,
     startGame,
-    submitAnswer
+    submitAnswer,
+    currentStreak
   };
 };

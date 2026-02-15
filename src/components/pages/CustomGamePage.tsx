@@ -31,10 +31,14 @@ export const CustomGamePage = () => {
   const [resultMax, setResultMax] = useState(100);
 
   // --- CONSTRAINTS ---
+  const [timeBonusAmount, setTimeBonusAmount] = useState(0);
+  const [timeBonusThreshold, setTimeBonusThreshold] = useState(0);
   const [timerMode, setTimerMode] = useState<TimerMode>('TOTAL');
   const [timeValue, setTimeValue] = useState(60); // Used for Total OR Per-Question
   const [hasLivesLimit, setHasLivesLimit] = useState(true);
   const [livesValue, setLivesValue] = useState(3);
+  const [livesBonusAmount, setLivesBonusAmount] = useState(0);
+  const [livesBonusThreshold, setLivesBonusThreshold] = useState(0);
 
   // --- HANDLERS ---
   const toggleOp = (op: Operation) => {
@@ -67,7 +71,10 @@ export const CustomGamePage = () => {
       startingLives: hasLivesLimit ? livesValue : null,
       
       // Constants
-      timeBonus: 0,
+      timeBonusAmount,
+      timeBonusThreshold,
+      livesBonusAmount,
+      livesBonusThreshold,
       timePenalty: 0,
     };
 
@@ -115,8 +122,27 @@ export const CustomGamePage = () => {
           resultMax={resultMax}
           setResultMax={setResultMax}
         />
-        <Timer setTimeValue={setTimeValue} setTimerMode={(mode: TimerMode)=>setTimerMode(mode)} isAdvanced={isAdvanced} timerMode={timerMode} timeValue={timeValue} />
-        <Lives hasLivesLimit={hasLivesLimit} setHasLivesLimit={setHasLivesLimit} livesValue={livesValue} setLivesValue={setLivesValue} />
+        <Timer 
+          setTimeValue={setTimeValue} 
+          setTimerMode={(mode: TimerMode)=>setTimerMode(mode)} 
+          isAdvanced={isAdvanced} 
+          timerMode={timerMode} 
+          timeValue={timeValue} 
+          timeBonusAmount={timeBonusAmount}
+          timeBonusThreshold={timeBonusThreshold}
+          setTimeBonusAmount={setTimeBonusAmount}
+          setTimeBonusThreshold={setTimeBonusThreshold}
+        />
+        <Lives 
+          hasLivesLimit={hasLivesLimit} 
+          setHasLivesLimit={setHasLivesLimit} 
+          livesValue={livesValue} 
+          setLivesValue={setLivesValue} 
+          livesBonusAmount={livesBonusAmount}
+          setLivesBonusAmount={setLivesBonusAmount}
+          livesBonusThreshold={livesBonusThreshold}
+          setLivesBonusThreshold={setLivesBonusThreshold}
+        />
       </div>
       <button 
         onClick={handleStart}

@@ -16,11 +16,14 @@ export interface GameConfig {
   // Time Rules
   timerMode: TimerMode; 
   timeValue: number | null;
-  timeBonus: number;            // +Seconds for correct answer
+  timeBonusAmount: number;            // +Seconds for correct answer
+  timeBonusThreshold: number;
   timePenalty: number;          // -Seconds for wrong answer
   
   // Life Rules
   startingLives: number | null;
+  livesBonusAmount: number;
+  livesBonusThreshold: number;
 }
 
 export interface GameSession {
