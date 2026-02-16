@@ -10,7 +10,7 @@ const GamesHistory = () => {
     useEffect(()=>{
         const fetchGames = async () => {
             try {
-                const response = await db.logs.toArray();
+                const response = (await db.logs.toArray()).reverse();
                 if(response){
                     setPastGames(response)
                 }

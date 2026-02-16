@@ -8,6 +8,7 @@ import { type GameLog } from '../../types/game';
 import { db } from '../../db/db';
 import ObjectID from 'bson-objectid';
 import { PauseMenu } from '../layout/PauseMenu';
+import { addXp } from '../../lib/xp';
 
 export const GameSession = () => {
   const navigate = useNavigate();
@@ -23,7 +24,6 @@ export const GameSession = () => {
   // Start Game on Mount
   useEffect(() => {
     engine.startGame();
-    console.log(engine.timeLeft, engine.lives)
   }, []);
 
   const saveGame = async (gameData: GameLog) => {
@@ -35,9 +35,10 @@ export const GameSession = () => {
   }
 
 
-  const handleEnd = () => {
+  const handleEnd = async () => {
+    const gameId = new ObjectID().toHexString();
     const gameData = {
-      _id: new ObjectID().toHexString(),
+      _id: gameId,
       timestamp: new Date(),
       mode: config.mode,
       config,
@@ -46,9 +47,11 @@ export const GameSession = () => {
       livesLeft: engine.lives || 0,
       correctAnswers: engine.correctAnswers,
       wrongAnswers: engine.wrongAnswers,
-      topStreak: engine.currentStreak
+      topStreak: engine.currentStreak,
+      totalXp: engine.gameXp
     };
-    saveGame(gameData);
+    await saveGame(gameData);
+    await addXp({amount: engine.gameXp, source: "GAME_WIN", gameLogId: gameId});
     navigate(`/gameover/${gameData._id}`);
   }
 
@@ -120,6 +123,7 @@ export const GameSession = () => {
         <div className="flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Score</span>
           <span className="font-mono text-3xl font-black text-muted">{engine.score}</span>
+          <span className='text-[15px] font-mono text-muted'>{engine.gameXp || 0} xp</span>
         </div>
 
         <div className="flex items-start pt-2 justify-end gap-1 w-24">

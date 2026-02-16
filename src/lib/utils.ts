@@ -4,13 +4,10 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-// Higher number = Slower leveling.
 const CONSTANT = 0.1; 
-
 export const getLevelFromXP = (xp: number): number => {
-  // Example: 100 XP -> Level 2
-  // Formula: Level = Constant * Sqrt(XP)
-  return Math.floor(CONSTANT * Math.sqrt(xp)) + 1;
+  //return Math.floor(CONSTANT * Math.sqrt(xp)) + 1;
+  return Math.floor(xp/25);
 };
 
 export const getProgressToNextLevel = (xp: number) => {
@@ -39,4 +36,14 @@ export const formatDate = (date: Date | string | number): string => {
     month: 'short',   // "Jan"
     year: 'numeric'   // "2024"
   });
+};
+
+// Used for xp logs
+export const getCurrentWeekId = (): string => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const oneJan = new Date(year, 0, 1);
+  const dayOfYear = ((now.getTime() - oneJan.getTime()) + 86400000) / 86400000;
+  const week = Math.ceil((dayOfYear + oneJan.getDay() + 1) / 7);
+  return `${year}-W${week.toString().padStart(2, '0')}`;
 };

@@ -1,12 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import type { GameConfig } from "../types/game";
 import { generateAdvancedProblem, type MathProblem } from "../lib/math";
+import { calculateQuestionXp } from "../lib/xp";
+import { estimateDifficulty } from "../lib/difficultyPresets";
 
 export const useGameEngine = (config: GameConfig) => {
   // Game State
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [gameXp, setGameXp] = useState(0);
   
   // Player Stats
   const [score, setScore] = useState(0);
@@ -137,6 +140,16 @@ export const useGameEngine = (config: GameConfig) => {
       // Streak Logic
       const newStreak = currentStreak + 1;
       setCurrentStreak(newStreak);
+
+      // Handles XP
+      const difficulty = estimateDifficulty(
+        config.allowedOps,
+        config.operandCount || 2,
+        config.inputRange.max || 100,
+        config.allowMixedOps || false
+      )
+      const xpToAdd = calculateQuestionXp(difficulty, 1);
+      setGameXp(prev=>prev+xpToAdd);
       
       // Time Bonus
       // Check if enabled (threshold > 0) AND if we hit the interval
@@ -214,6 +227,7 @@ export const useGameEngine = (config: GameConfig) => {
     shakeScreen,
     startGame,
     submitAnswer,
-    currentStreak
+    currentStreak,
+    gameXp
   };
 };

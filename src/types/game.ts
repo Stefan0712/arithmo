@@ -46,4 +46,5 @@ export interface GameLog {
   correctAnswers: number;
   wrongAnswers: number;
   topStreak: number;
+  totalXp: number;
 }

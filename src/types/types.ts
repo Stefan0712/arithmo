@@ -42,9 +42,6 @@ export interface ShopItem {
     type: 'energy' | 'pro' | 'ad';
     icon: string;
 }
-
-export type SubscriptionTier = 'FREE' | 'PRO';
-
 export interface UserSettings {
   soundEnabled: boolean;
   hapticsEnabled: boolean;
@@ -66,28 +63,17 @@ export interface UserProgress {
   currentLeagueId: string; // e.g., 'silver_iii'
 }
 
-export interface User {
+export interface XPLog {
   _id: string;
-  username: string;
-  createdAt: number;
+  userId: string;
+  amount: number;
+  source: 'GAME_WIN' | 'DAILY_BONUS' | 'ACHIEVEMENT' | 'ADMIN_GIFT';
   
-  // Economy
-  brainCells: number;      // Current energy
-  maxBrainCells: number;   // Starts at 5, upgrades to 10
-  lastEnergyRefill: number; // Timestamp of last +1 energy
+  // Context
+  gameMode?: string;  // 'SURVIVAL', 'ZEN' (Optional)
   
-  // Progression
-  xp: number;       // Cumulative XP
-
-  // Streaks
-  currentStreak: number;
-  bestStreak: number;
-  lastLoginDate: string; // ISO Date "2026-01-27"
-  
-  subscriptionTier: SubscriptionTier;
-  
-  settings: UserSettings;
-  progress: UserProgress;
-
-  syncedAt: number; // 0 if never synced, or timestamp of last server push
+  // Time Indexing
+  timestamp: Date;    
+  weekId: string;     // "2024-07" (Year-Week)
+  gameLogId?: string;
 }

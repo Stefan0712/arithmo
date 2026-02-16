@@ -40,7 +40,7 @@ export const GameHistoryItem = ({ log }: GameHistoryItemProps) => {
     <div 
       onClick={() => setExpanded(!expanded)}
       className={`
-        w-full rounded-2xl border transition-all duration-200 cursor-pointer overflow-hidden
+        w-full rounded-2xl border transition-all duration-200 cursor-pointer flex-shrink-0 overflow-hidden
         ${expanded 
           ? 'bg-surface border-primary/50 shadow-md' 
           : 'bg-surface/50 border-border hover:bg-surface hover:border-primary/30'
@@ -102,6 +102,12 @@ export const GameHistoryItem = ({ log }: GameHistoryItemProps) => {
               <div className="bg-background/50 p-3 rounded-lg flex items-center justify-between border border-border">
                 <span className="text-xs text-muted flex items-center gap-2"><Clock size={14} className="text-blue-500"/> Time Left</span>
                 <span className="font-mono font-bold text-title">{log.timeLeft}s</span>
+              </div>
+            )}
+            {log.totalXp > 0 && (
+              <div className="bg-background/50 p-3 rounded-lg flex items-center justify-between border border-border">
+                <span className="text-xs text-muted flex items-center gap-2"><p className="size-[14px] text-green-600 font-bold">XP</p> Earned</span>
+                <span className="font-mono font-bold text-title">{log.totalXp}</span>
               </div>
             )}
           </div>

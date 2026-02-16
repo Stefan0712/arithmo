@@ -115,6 +115,15 @@ const GameOver = () => {
             {gameData.topStreak || 0}
           </span>
         </div>
+        <div className="bg-surface/50 p-4 rounded-xl border border-white/5 flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-1 text-blue-400">
+            <p className="size-[18px] text-green-600 font-bold flex items-center">XP</p>
+            <span className="text-xs font-bold uppercase items-center flex">Earned</span>
+          </div>
+          <span className="text-2xl font-mono font-bold text-white">
+            {gameData.totalXp || 0}
+          </span>
+        </div>
       </div>
 
       <div className="w-full grid grid-cols-2 mt-auto gap-4">

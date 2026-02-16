@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import { Link } from "react-router-dom";
+import { resetAccount } from "../../lib/reset";
 
 const Menu = () => {
 
@@ -33,6 +34,15 @@ const Menu = () => {
                 </Link>
                 <button className="text-muted h-[50px] w-full items-center px-2 grid grid-cols-[1fr_30px]">
                     <p className="text-start">My Stats</p>
+                </button>
+            </div>
+            <b className="text-muted font-bold">DEV</b>
+            <div className="w-full rounded-xl bg-surface flex flex-col">
+                <button 
+                    className="text-muted h-[50px] w-full items-center px-2 grid grid-cols-[1fr_30px]"
+                    onClick={resetAccount}
+                >
+                    <p className="text-start">Reset Profile</p>
                 </button>
             </div>
         </div>

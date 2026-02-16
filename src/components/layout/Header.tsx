@@ -13,9 +13,6 @@ export const Header = () => {
         <div className="relative w-10 h-10 flex items-center justify-center">
            <div 
              className="absolute inset-0 rounded-lg border-2 border-primary/20" 
-             style={{ 
-               background: `conic-gradient(var(--color-primary) ${progressToNext}%, transparent 0)` 
-             }} 
            />
            <div className="absolute inset-[2px] bg-surface rounded-md flex items-center justify-center">
              <span className="font-bold text-muted text-sm">{level}</span>
@@ -27,7 +24,10 @@ export const Header = () => {
             {user.username}
           </span>
           <span className="text-sm font-bold text-muted">
-            {user.progress.currentLeagueId.replace('_', ' ').toUpperCase()}
+            LEAGUE I
+          </span>
+          <span className="text-[10px] text-muted font-bold tracking-wider uppercase">
+            {user.xp} xp. {progressToNext} xp until next level
           </span>
         </div>
       </div>
@@ -38,7 +38,7 @@ export const Header = () => {
         <div className="flex items-center gap-1.5">
           <Zap size={16} className="text-yellow-400 fill-yellow-400" />
           <span className="font-mono text-lg font-bold text-muted tracking-tight">
-            {user.brainCells}
+            {user.credits ?? 0}
           </span>
         </div>
         
