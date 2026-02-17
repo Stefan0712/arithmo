@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown, Trophy } from 'lucide-react';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 import type { LeaguePlayer } from '../../types/types';
 import { DailyPuzzleCard } from '../layout/DailyPuzzle';
 

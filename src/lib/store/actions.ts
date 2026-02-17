@@ -72,7 +72,7 @@ export const purchaseCredits = async (amount: number) => {
   }
 };
 
-export const purchaseBundle = async (bundleId: string, items: { itemId: string; qty: number }[]) => {
+export const purchaseBundle = async ( items: { itemId: string; qty: number }[]) => {
   const userId = localStorage.getItem('userId');
   if (!userId) return { success: false, error: 'No user' };
 
