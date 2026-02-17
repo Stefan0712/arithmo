@@ -3,18 +3,18 @@ import ObjectID from 'bson-objectid';
 import type { GameLog, GameSession } from '../types/game';
 import type { UserProfile } from '../types/user';
 import type { XPLog } from '../types/types';
+import type { InventoryItem } from '../types/store';
 
 class ArithmoDB extends Dexie {
-  // Define the TypeScript types for our tables
   user!: Table<UserProfile>;
   games!: Table<GameSession>;
   logs!: Table<GameLog>;
   xpLogs!: Table<XPLog>;
+  inventory!: Table<InventoryItem>;
 
   constructor() {
     super('ArithmoDB');
     
-    // Define the Database Schema
     this.version(1).stores({
       user: '_id',
       games: 'id, mode, timestamp, synced'
@@ -33,6 +33,15 @@ class ArithmoDB extends Dexie {
       games: 'id, mode, timestamp, synced',
       logs: '_id, mode, timestamp, synced',
       xpLogs: '_id, userId, weekId, timestamp'
+    });
+
+    // Added inventory
+    this.version(3).stores({
+      user: '_id',
+      games: 'id, mode, timestamp, synced',
+      logs: '_id, mode, timestamp, synced',
+      xpLogs: '_id, userId, weekId, timestamp',
+      inventory: '_id, ownerId, itemId, isUsed'
     });
   }
 }

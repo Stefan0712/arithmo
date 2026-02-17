@@ -12,12 +12,14 @@ import GameOver from './components/pages/GameOver';
 import Menu from './components/pages/Menu';
 import GamesHistory from './components/pages/GameHistory/GamesHistory';
 import { useTheme } from './hooks/useTheme';
+import { StoreProvider } from './context/StoreProvider';
+import Store from './components/pages/Store/Store';
 
-const SettingsPage = () => <div className="p-10">Settings Content</div>;
 
 
 
 function App() {
+
   
   useTheme();
 
@@ -26,26 +28,28 @@ function App() {
   }, []);
 
 
-  return (
-    <HashRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Navigate to="/saga" replace />} />
-          <Route path="/saga" element={<SagaMapScreen />} />
-          <Route path="/arcade" element={<ArcadePage />} />
-          <Route path="/events" element={<EventsScreen />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/custom-game" element={<CustomGamePage />} />
-          <Route path="/gameover/:id" element={<GameOver />} />
-          <Route path="/menu" element={<Menu />}/>
-          <Route path='/history' element={<GamesHistory />} />
-        </Route>
 
-        <Route element={<GameLayout />}>
-          <Route path="/play/:mode" element={<GameSession />} />
-        </Route>
-      </Routes>
-    </HashRouter>
+  return (
+    <StoreProvider>
+      <HashRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Navigate to="/saga" replace />} />
+            <Route path="/saga" element={<SagaMapScreen />} />
+            <Route path="/arcade" element={<ArcadePage />} />
+            <Route path="/events" element={<EventsScreen />} />
+            <Route path="/custom-game" element={<CustomGamePage />} />
+            <Route path="/gameover/:id" element={<GameOver />} />
+            <Route path="/menu" element={<Menu />}/>
+            <Route path='/history' element={<GamesHistory />} />
+          </Route>
+
+          <Route element={<GameLayout />}>
+            <Route path="/play/" element={<GameSession />} />
+          </Route>
+        </Routes>
+      </HashRouter>
+    </StoreProvider>
   );
 }
 

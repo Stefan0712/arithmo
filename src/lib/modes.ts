@@ -13,9 +13,8 @@ export interface GameModeDetail {
   isLocked: boolean;
   description: string;
   icon: LucideIcon;
-  colorClass: string; // Helper for UI styling (e.g., "bg-orange-500")
+  colorClass: string;
   config: GameConfig | null;
-  url: string;
   cost: number;
 }
 
@@ -24,7 +23,6 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     id: 'survival',
     isPro: false,
     isLocked: false,
-    url:'/play/custom',
     title: 'Survival',
     description: '3 lives. Unlimited time. How long can you last?',
     icon: Flame,
@@ -60,7 +58,6 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     isPro: false,
     isLocked: false,
     cost: 0,
-    url:'/play/custom',
     description: '60 seconds. High speed. Infinite lives.',
     icon: Zap,
     colorClass: 'text-blue-500',
@@ -93,7 +90,6 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     title: 'Zen Mode',
     isPro: false,
     isLocked: false,
-    url:'/play/custom',
     description: 'No lives. No timer. Just practice.',
     cost: 0,
     icon: Leaf,
@@ -125,7 +121,6 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     title: 'Custom Game',
     isPro: false,
     isLocked: false,
-    url:'/custom-game',
     description: 'You make the rules.',
     cost: 0,
     icon: Leaf,

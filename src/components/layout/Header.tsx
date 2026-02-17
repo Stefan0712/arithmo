@@ -1,8 +1,11 @@
 import { Zap } from 'lucide-react';
 import { useUser } from '../../hooks/useUser';
+import { useStore } from '../../context/useStore';
 
 export const Header = () => {
   const { user, level, progressToNext, loading } = useUser();
+
+  const {openStore} = useStore();
 
   if (loading || !user) return <div className="h-16 bg-header border-b border-border backdrop-blur-md" />; // Empty placeholder
 
@@ -35,7 +38,7 @@ export const Header = () => {
       <button 
         className="group flex items-center gap-3 bg-background border border-primary/30 rounded-full pl-4 pr-1.5 py-1.5 active:scale-95 transition-all"
       >
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5" onClick={()=>openStore('bank')}>
           <Zap size={16} className="text-yellow-400 fill-yellow-400" />
           <span className="font-mono text-lg font-bold text-muted tracking-tight">
             {user.credits ?? 0}
