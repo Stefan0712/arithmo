@@ -72,7 +72,7 @@ export const purchaseCredits = async (amount: number) => {
   }
 };
 
-export const purchaseBundle = async ( items: { itemId: string; qty: number }[]) => {
+export const purchaseBundle = async (bundleId: string, items: { itemId: string; qty: number }[]) => {
   const userId = localStorage.getItem('userId');
   if (!userId) return { success: false, error: 'No user' };
 
@@ -80,7 +80,7 @@ export const purchaseBundle = async ( items: { itemId: string; qty: number }[]) 
     await db.transaction('rw', db.inventory, async () => {
       // Create all items in the loop
       const newItems: InventoryItem[] = [];
-      
+      console.log("You bought bundle with id "+bundleId)
       items.forEach(item => {
         for (let i = 0; i < item.qty; i++) {
           newItems.push({
