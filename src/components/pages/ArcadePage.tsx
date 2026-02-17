@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+// import { Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { DEFAULT_MODES, type GameModeDetail } from '../../lib/modes';
 
@@ -64,14 +64,14 @@ function ModeCard({ mode, index }: ModeCardProps) {
                 {mode.description}
             </p>
 
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
                 {mode.cost !== undefined && (
                     <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700 rounded-full border border-slate-600">
                         <Zap className="w-4 h-4 text-white fill-white" />
                         <span className="text-sm font-mono font-semibold text-white">{mode.cost}</span>
                     </div>
                 )}
-            </div>
+            </div> */}
             {isPvP && (
                 <div className="mt-4 flex items-center justify-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-slate-700 border-2 border-slate-600" />

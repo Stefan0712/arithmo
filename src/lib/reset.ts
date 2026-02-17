@@ -24,3 +24,17 @@ export const resetAccount = async () => {
     alert("Error resetting account. Check console.");
   }
 };
+
+export const resetDailyProgress = async () => {
+  const today = new Date().toISOString().split('T')[0];
+  const userId = localStorage.getItem('userId')
+  await db.user.update(userId, {
+    daily: {
+      date: today,
+      runAttempts: 0,
+      puzzleAttempts: 0,
+      puzzleSolved: false
+    }
+  });
+  window.location.reload(); 
+};

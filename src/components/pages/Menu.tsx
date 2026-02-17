@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import { Link } from "react-router-dom";
-import { resetAccount } from "../../lib/reset";
+import { resetAccount, resetDailyProgress } from "../../lib/reset";
 
 const Menu = () => {
 
@@ -13,6 +13,7 @@ const Menu = () => {
         toggleTheme(theme);
         setCurrentTheme(theme)
     }
+
     return (
         <div className="w-full h-full flex flex-col gap-4 p-4">
             <h2 className="text-muted font-bold text-xl">Settings</h2>
@@ -43,6 +44,12 @@ const Menu = () => {
                     onClick={resetAccount}
                 >
                     <p className="text-start">Reset Profile</p>
+                </button>
+                <button 
+                    className="text-muted h-[50px] w-full items-center px-2 grid grid-cols-[1fr_30px]"
+                    onClick={resetDailyProgress}
+                >
+                    <p className="text-start">Reset Daily Challenges</p>
                 </button>
             </div>
         </div>

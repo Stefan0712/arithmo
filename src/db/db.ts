@@ -66,6 +66,11 @@ export const createDefaultUser = (): UserProfile => {
     multiplierExpiresAt: 0,
     totalGamesPlayed: 0,
     highestScore: 0,
+    daily: {
+      runAttempts: 0,
+      puzzleAttempts: 0,
+      puzzleSolved: false,
+    }
   };
 };
 

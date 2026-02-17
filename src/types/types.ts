@@ -67,7 +67,7 @@ export interface XPLog {
   _id: string;
   userId: string;
   amount: number;
-  source: 'GAME_WIN' | 'DAILY_BONUS' | 'ACHIEVEMENT' | 'ADMIN_GIFT';
+  source: 'GAME_WIN' | 'DAILY_BONUS' | 'ACHIEVEMENT' | 'ADMIN_GIFT' | 'DAILY_PUZZLE';
   
   // Context
   gameMode?: string;  // 'SURVIVAL', 'ZEN' (Optional)

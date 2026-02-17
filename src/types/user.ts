@@ -17,4 +17,12 @@ export interface UserProfile {
   totalGamesPlayed: number;
   highestScore: number;
   bestStreak: number;
+
+  // Challenges
+  daily: {
+    date?: string;
+    runAttempts: number;
+    puzzleAttempts: number;
+    puzzleSolved: boolean;
+  };
 }

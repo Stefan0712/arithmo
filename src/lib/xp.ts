@@ -9,7 +9,7 @@ export const calculateQuestionXp = (difficulty: number, multiplier: number): num
 
 interface AddXpParams {
   amount: number;
-  source: 'GAME_WIN' | 'DAILY_BONUS' | 'ACHIEVEMENT';
+  source: 'GAME_WIN' | 'DAILY_BONUS' | 'ACHIEVEMENT' | 'DAILY_PUZZLE';
   gameLogId?: string;
 }
 

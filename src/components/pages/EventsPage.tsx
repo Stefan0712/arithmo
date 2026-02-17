@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Trophy } from 'lucide-react';
 import type { LeaguePlayer } from '../../types/types';
+import { DailyPuzzleCard } from '../layout/DailyPuzzle';
 
 export default function EventsScreen() {
     const [activeTab, setActiveTab] = useState<'daily' | 'league'>('league');
@@ -46,12 +47,8 @@ export default function EventsScreen() {
 
 function DailyChallengeView() {
     return (
-        <div className="flex items-center justify-center h-full text-cyan-400 px-6">
-            <div className="text-center">
-                <Trophy className="w-16 h-16 mx-auto mb-4 text-amber-500" />
-                <h3 className="text-xl font-bold mb-2">Daily Challenge</h3>
-                <p className="text-slate-400">Complete 20 questions in under 2 minutes!</p>
-            </div>
+        <div className="flex h-full flex-col items-center h-full px-6">
+            <DailyPuzzleCard expression='1+2+3+4' answer={10} />
         </div>
     );
 }
