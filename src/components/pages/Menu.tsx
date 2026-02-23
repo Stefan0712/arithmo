@@ -33,6 +33,9 @@ const Menu = () => {
                 <Link to={'/history'} className="text-muted h-[50px] w-full grid grid-cols-[1fr_30px] items-center px-2">
                     <p className="text-start">Games History</p>
                 </Link>
+                <Link to={'/experience-history'} className="text-muted h-[50px] w-full grid grid-cols-[1fr_30px] items-center px-2">
+                    <p className="text-start">Experience History</p>
+                </Link>
                 <button className="text-muted h-[50px] w-full items-center px-2 grid grid-cols-[1fr_30px]">
                     <p className="text-start">My Stats</p>
                 </button>

@@ -38,7 +38,7 @@ function ModeCard({ mode, index }: ModeCardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             disabled={mode.isLocked}
-            onClick={()=>navigate('/play',{ state: { config: mode.config } })}
+            onClick={()=>mode.id === 'custom' ? navigate('/custom-game') : navigate('/play',{ state: { config: mode.config } })}
             className={"w-full bg-arcade-card p-6 rounded-2xl border-border border-2 transition-all shadow-sm hover:shadow-md hover:border-primary/50 active:scale-95 touch-target text-left"}
         >
             <div className="flex items-start justify-between mb-4">

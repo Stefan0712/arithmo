@@ -13,6 +13,7 @@ import Menu from './components/pages/Menu';
 import GamesHistory from './components/pages/GameHistory/GamesHistory';
 import { useTheme } from './hooks/useTheme';
 import { StoreProvider } from './context/StoreProvider';
+import ExperienceHistory from './components/pages/experienceHistory';
 
 
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/gameover/:id" element={<GameOver />} />
             <Route path="/menu" element={<Menu />}/>
             <Route path='/history' element={<GamesHistory />} />
+            <Route path='/experience-history' element={<ExperienceHistory />} />
           </Route>
 
           <Route element={<GameLayout />}>
