@@ -41,26 +41,28 @@ function ModeCard({ mode, index }: ModeCardProps) {
             onClick={()=>mode.id === 'custom' ? navigate('/custom-game') : navigate('/play',{ state: { config: mode.config } })}
             className={"w-full bg-arcade-card p-6 rounded-2xl border-border border-2 transition-all shadow-sm hover:shadow-md hover:border-primary/50 active:scale-95 touch-target text-left"}
         >
-            <div className="flex items-start justify-between mb-4">
-                <div className={`p-3 rounded-xl ${isPvP
-                    ? 'bg-slate-700 text-white'
-                    : mode.isLocked
-                        ? 'bg-slate-700 text-slate-400'
-                        : 'bg-slate-700 text-white'
-                    }`}>
-                    {<mode.icon/>}
-                </div>
-                {mode.isPro && (
-                    <div className="px-3 py-1 bg-amber-500/20 border border-amber-500/50 rounded-full">
-                        <span className="text-xs font-bold text-title">PRO</span>
+            <div className='w-full flex items-center gap-3 h-[50px] mb-2'>
+                <div className="flex items-start justify-between">
+                    <div className={`p-3 rounded-xl ${isPvP
+                        ? 'bg-slate-700 text-white'
+                        : mode.isLocked
+                            ? 'bg-slate-700 text-slate-400'
+                            : 'bg-slate-700 text-white'
+                        }`}>
+                        {<mode.icon/>}
                     </div>
-                )}
+                    {mode.isPro && (
+                        <div className="px-3 py-1 bg-amber-500/20 border border-amber-500/50 rounded-full">
+                            <span className="text-xs font-bold text-title">PRO</span>
+                        </div>
+                    )}
+                </div>
+                <h3 className={`text-xl font-bold mb-2 text-title flex items-center h-full`}>
+                    {mode.title}
+                </h3>
             </div>
-            <h3 className={`text-xl font-bold mb-2 text-title`}>
-                {mode.title}
-            </h3>
 
-            <p className={`text-sm mb-4 text-subtitle`}>
+            <p className={`text-sm text-subtitle`}>
                 {mode.description}
             </p>
 

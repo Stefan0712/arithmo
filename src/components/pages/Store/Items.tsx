@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Shield, Package } from 'lucide-react';
+import { Shield, Package, Snowflake, Heart, FastForward, Zap, Circle } from 'lucide-react';
 import { db } from '../../../db/db';
 import { useStore } from '../../../context/useStore';
 import { ITEM_CATALOG } from '../../../lib/store/store';
@@ -44,7 +44,9 @@ export const Items = () => {
     const userId = localStorage.getItem('userId');
     return userId ? db.user.get(userId) : undefined;
   });
-
+  const inventory = useLiveQuery(() => {
+    return db.inventory.toArray() ?? [];
+  });
   // --- HANDLERS ---
 
   const handleBuySingle = async (item: typeof ITEM_CATALOG[0]) => {
@@ -74,6 +76,25 @@ export const Items = () => {
       alert("Transaction failed.");
     }
   };
+
+  const getItemIcon = (icon: string) => {
+    switch(icon) {
+      case 'snowflake':
+        return <Snowflake />
+      case 'heart':
+        return <Heart />
+      case 'fast-forward':
+        return <FastForward />
+      case 'zap':
+        return <Zap />
+      default:
+        return <Circle />
+    }
+  }
+  
+  const getItemCount = (itemId: string) => {
+    return inventory?.filter(item=>item.itemId === itemId).length
+  }
 
   if (!user) return <div className="p-8 text-center text-muted">Loading Store...</div>;
 
@@ -142,18 +163,20 @@ export const Items = () => {
               <div 
                 key={item.id}
                 className={`
-                  p-3 rounded-xl border flex flex-col items-center text-center gap-2 transition-all
+                  p-3 rounded-xl border border-border flex flex-col items-center text-center gap-2 transition-all relative
                   ${canAfford 
-                    ? 'bg-surface border-border hover:border-primary/40' 
+                    ? 'bg-surface border-green-500 hover:border-primary/40' 
                     : 'bg-surface/50 border-transparent opacity-60'
                   }
                 `}
               >
-                <div className="text-3xl mb-1 filter drop-shadow-sm">{item.icon}</div>
-                
+                <div className="text-3xl mb-1 filter drop-shadow-sm">{getItemIcon(item.icon)}</div>
                 <div className="w-full">
                   <div className="font-bold text-sm leading-tight">{item.name}</div>
                   <div className="text-[10px] text-muted line-clamp-1">{item.description}</div>
+                  <div className='w-full mt-2 h-8 flex items-center justify-center rounded-full bg-white/10'>
+                    You have {getItemCount(item.id)}
+                  </div>
                 </div>
 
                 <button

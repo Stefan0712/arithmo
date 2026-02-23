@@ -5,6 +5,7 @@ export type TimerMode = 'TOTAL' | 'PER_QUESTION' | 'NONE';
 export interface GameConfig {
   modeName: string;
   mode: GameMode; // etc
+  multiplier: number;
   
   // Math Rules
   allowedOps: Operation[];

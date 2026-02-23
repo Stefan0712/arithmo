@@ -31,6 +31,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     config: {
       modeName: 'Survival',
       mode: 'SURVIVAL',
+      multiplier: 0.5,
       
       // Math Rules: Starts Easy (Engine handles difficulty ramping)
       allowedOps: ['ADD', 'SUB'],
@@ -64,6 +65,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     config: {
       modeName: 'Time Attack',
       mode: 'TIME_ATTACK',
+      multiplier: 0.5,
 
       // Math Rules: Fast & Medium difficulty
       allowedOps: ['ADD', 'SUB', 'MUL'],
@@ -97,6 +99,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     config: {
       modeName: 'Zen Mode',
       mode: 'INFINITE',
+      multiplier: 0,
 
       // Math Rules: Good for warming up
       allowedOps: ['ADD', 'SUB', 'MUL', 'DIV'],

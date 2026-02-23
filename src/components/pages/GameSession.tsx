@@ -9,6 +9,7 @@ import { db } from '../../db/db';
 import ObjectID from 'bson-objectid';
 import { PauseMenu } from '../layout/PauseMenu';
 import { addXp } from '../../lib/xp';
+import ItemsBar from '../layout/ItemsBar';
 
 export const GameSession = () => {
   const navigate = useNavigate();
@@ -123,7 +124,7 @@ export const GameSession = () => {
         <div className="flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Score</span>
           <span className="font-mono text-3xl font-black text-muted">{engine.score}</span>
-          <span className='text-[15px] font-mono text-muted'>{engine.gameXp || 0} xp</span>
+          {config.multiplier > 0 ? <span className='text-[15px] font-mono text-muted'>{engine.gameXp || 0} xp</span> : null}
         </div>
 
         <div className="flex items-start pt-2 justify-end gap-1 w-24">
@@ -151,6 +152,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
+      <ItemsBar />
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 

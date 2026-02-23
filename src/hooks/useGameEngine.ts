@@ -148,7 +148,7 @@ export const useGameEngine = (config: GameConfig) => {
         config.inputRange.max || 100,
         config.allowMixedOps || false
       )
-      const xpToAdd = calculateQuestionXp(difficulty, 1);
+      const xpToAdd = calculateQuestionXp(difficulty, config.multiplier);
       setGameXp(prev=>prev+xpToAdd);
       
       // Time Bonus

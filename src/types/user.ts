@@ -1,3 +1,5 @@
+import type { CatalogItem } from "./store";
+
 export interface UserProfile {
   _id: string;
   username: string;
@@ -9,7 +11,6 @@ export interface UserProfile {
   xp: number;
 
   credits: number;   // To buy items
-  maxCredits?: number;
   
   xpMultiplier: number;       // Default: 1.0
   multiplierExpiresAt: number;// Timestamp (Date.now()). 0 if inactive.
@@ -17,6 +18,8 @@ export interface UserProfile {
   totalGamesPlayed: number;
   highestScore: number;
   bestStreak: number;
+
+  inventory: CatalogItem[];
 
   // Challenges
   daily: {

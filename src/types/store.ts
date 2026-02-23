@@ -7,6 +7,9 @@ export interface CatalogItem {
   type: ItemType;
   price: number;       // Cost in Braincells
   icon: string;  
+  color: string;
+  bgColor: string;
+  owned: number;
 }
 
 // The Instance

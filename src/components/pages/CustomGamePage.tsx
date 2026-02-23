@@ -54,7 +54,7 @@ export const CustomGamePage = () => {
     const customConfig: GameConfig = {
       modeName: 'Custom Game',
       mode: 'CUSTOM',
-      
+      multiplier: 0,
       allowedOps: ops,
 
       // Advanced Overrides
