@@ -18,6 +18,7 @@ export const GameSession = () => {
   // Initialize Engine
   const config = location.state?.config;
   const engine = useGameEngine(config);
+
   
   // What the user types
   const [currentInput, setCurrentInput] = useState('');
