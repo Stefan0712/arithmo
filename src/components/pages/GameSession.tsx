@@ -153,7 +153,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
-      <ItemsBar freezeTime={()=>engine.handleFreezeTime(10)} skip={()=>console.log('skip')} addLife={()=>console.log('add life')} />
+      <ItemsBar freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} />
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 

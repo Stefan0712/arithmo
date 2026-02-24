@@ -44,7 +44,17 @@ export const useGameEngine = (config: GameConfig) => {
 
   const togglePause = useCallback(()=> {
     setIsPaused(prev=>!prev)
-  },[])
+  },[]);
+
+  const handleAddLife = (amount: number) => {
+    if(lives) {
+      setLives(prev => prev ? prev + amount : null)
+    }
+  }
+
+  const handleSkip = () => {
+    setProblem(getNextProblem());
+  }
 
   // Generate problem
   const getNextProblem = useCallback(() => {
@@ -254,6 +264,8 @@ export const useGameEngine = (config: GameConfig) => {
     currentStreak,
     gameXp,
     handleFreezeTime, 
-    isTimerFrozen
+    isTimerFrozen,
+    handleAddLife,
+    handleSkip
   };
 };

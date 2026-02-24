@@ -38,6 +38,10 @@ const rawInventory = useLiveQuery(() => db.inventory.toArray());
     const handleActivateItem = (item: CatalogItem) => {
         if (item.id==='item_freeze') {
             freezeTime()
+        } else if ( item.id === 'item_life') {
+            addLife();
+        } else if(item.id === 'item_skip'){
+            skip();
         }
         console.log(item.id);
     }

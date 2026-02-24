@@ -135,7 +135,7 @@ const GameOver = () => {
           Home
         </button>
         <button 
-          onClick={() => navigate('/play/custom', { state: { config: gameData.config } })}
+          onClick={() => navigate('/play', { state: { config: gameData.config } })}
           className="flex-[2] h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-95 transition-all"
         >
           <RotateCcw size={20} />
