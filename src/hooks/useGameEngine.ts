@@ -10,6 +10,9 @@ export const useGameEngine = (config: GameConfig) => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [gameXp, setGameXp] = useState(0);
+  const [freezeTimeLeft, setFreezeTimeLeft] = useState(0);
+
+
   
   // Player Stats
   const [score, setScore] = useState(0);
@@ -30,6 +33,14 @@ export const useGameEngine = (config: GameConfig) => {
 
   // Haptics triggers
   const [shakeScreen, setShakeScreen] = useState(false);
+
+  // Derived state (helper boolean)
+  const isTimerFrozen = freezeTimeLeft > 0;
+
+  // The Function to trigger the item
+  const handleFreezeTime = (amount: number) => {
+    setFreezeTimeLeft(prev => prev + amount);
+  };
 
   const togglePause = useCallback(()=> {
     setIsPaused(prev=>!prev)
@@ -88,10 +99,23 @@ export const useGameEngine = (config: GameConfig) => {
     setWrongAnswers(prev=>prev+1)
   };
 
+  useEffect(() => {
+  // Only run if we are actually frozen
+  if (!isPlaying || isPaused || isGameOver || freezeTimeLeft <= 0) return;
+
+  const freezeTimer = setInterval(() => {
+    setFreezeTimeLeft((prev) => {
+      if (prev <= 1) return 0; // Unfreeze when we hit 0
+      return prev - 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(freezeTimer);
+}, [isPlaying, isPaused, isGameOver, freezeTimeLeft]);
 
   // Timer Loop
   useEffect(() => {
-    if (!isPlaying || isGameOver || timeLeft === null || isPaused) return;
+    if (!isPlaying || isGameOver || timeLeft === null || isPaused || isTimerFrozen) return;
 
     const timer = setInterval(() => {
       
@@ -125,7 +149,7 @@ export const useGameEngine = (config: GameConfig) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isPlaying, isGameOver, timeLeft, questionTimeLeft, config, isPaused]);
+  }, [isPlaying, isGameOver, timeLeft, questionTimeLeft, config, isPaused, isTimerFrozen]);
 
 
 
@@ -228,6 +252,8 @@ export const useGameEngine = (config: GameConfig) => {
     startGame,
     submitAnswer,
     currentStreak,
-    gameXp
+    gameXp,
+    handleFreezeTime, 
+    isTimerFrozen
   };
 };

@@ -78,7 +78,7 @@ export const CustomGamePage = () => {
       timePenalty: 0,
     };
 
-    navigate('/play/custom', { state: { config: customConfig } });
+    navigate('/play', { state: { config: customConfig } });
   };
 
   return (

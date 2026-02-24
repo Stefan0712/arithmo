@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Heart, Clock, Pause, Infinity as InfinityIcon, Flame } from 'lucide-react';
+import { Heart, Clock, Pause, Infinity as InfinityIcon, Flame, Snowflake } from 'lucide-react';
 import { useGameEngine } from '../../hooks/useGameEngine';
 import { Numpad } from '../game/Numpad';
 import { cn } from '../../lib/utils';
@@ -102,12 +102,12 @@ export const GameSession = () => {
       )}
       <div className="h-20 px-6 flex mt-4 justify-between z-10">
         <div className='flex flex-col gap-1'>
-          <div className="flex items-center gap-2 w-24">
+          <div className="flex items-center gap-2">
             {engine.timeLeft !== null && (
               <>
-                <Clock size={20} className={engine.timeLeft < 10 ? "text-red-500 animate-pulse" : "text-muted"} />
-                <span className={cn("font-mono text-xl font-bold pt-2", engine.timeLeft < 10 ? "text-red-500" : "text-muted")}>
-                  {engine.timeLeft}s
+                <Clock size={20} className={`${engine.timeLeft < 10 ? "text-red-500 animate-pulse" : "text-muted"} ${engine.isTimerFrozen ? 'text-blue-500' : ''}`} />
+                <span className={cn("font-mono text-xl font-bold flex items-center", engine.timeLeft < 10 ? "text-red-500" : "text-muted")}>
+                  {engine.timeLeft}s {engine.isTimerFrozen ? <Snowflake className="ml-1" /> : null}
                 </span>
               </>
             )}
@@ -153,7 +153,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
-      <ItemsBar />
+      <ItemsBar freezeTime={()=>engine.handleFreezeTime(10)} skip={()=>console.log('skip')} addLife={()=>console.log('add life')} />
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 
