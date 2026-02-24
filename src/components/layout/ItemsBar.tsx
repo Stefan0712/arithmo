@@ -9,9 +9,10 @@ interface ItemsBarProps {
     freezeTime: ()=>void;
     addLife: ()=>void;
     skip: ()=> void;
+    showMessage: (text: string, color: string) => void;
 }
 
-const ItemsBar: React.FC<ItemsBarProps> = ({freezeTime, addLife, skip}) => {
+const ItemsBar: React.FC<ItemsBarProps> = ({freezeTime, addLife, skip, showMessage}) => {
 
 const rawInventory = useLiveQuery(() => db.inventory.toArray());
 
@@ -37,11 +38,14 @@ const rawInventory = useLiveQuery(() => db.inventory.toArray());
 
     const handleActivateItem = (item: CatalogItem) => {
         if (item.id==='item_freeze') {
-            freezeTime()
+            freezeTime();
+            showMessage('Time frozen', "lightblue")
         } else if ( item.id === 'item_life') {
             addLife();
+            showMessage("Extra life added", "red");
         } else if(item.id === 'item_skip'){
             skip();
+            showMessage("Exercise skipped", "purple");
         }
         console.log(item.id);
     }

@@ -23,6 +23,8 @@ export const GameSession = () => {
   // What the user types
   const [currentInput, setCurrentInput] = useState('');
 
+  const [sessionMessages, setSessionMessages] = useState<{id: string, color: string, text: string}[]>([])
+
   // Start Game on Mount
   useEffect(() => {
     engine.startGame();
@@ -36,6 +38,19 @@ export const GameSession = () => {
     }
   }
 
+  const handleShowMessage = (text: string, color: string) => {
+
+    const msgId = new ObjectID().toHexString()
+    const newMessage = {
+      id: msgId,
+      color,
+      text
+    };
+    setSessionMessages(prev=>[...prev, newMessage]);
+    setTimeout(()=>{
+      setSessionMessages(prev=>prev.filter(i=>i.id!==msgId))
+    }, 1500)
+  }
 
   const handleEnd = async () => {
     const gameId = new ObjectID().toHexString();
@@ -126,6 +141,9 @@ export const GameSession = () => {
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Score</span>
           <span className="font-mono text-3xl font-black text-muted">{engine.score}</span>
           {config.multiplier > 0 ? <span className='text-[15px] font-mono text-muted'>{engine.gameXp || 0} xp</span> : null}
+          <div className='flex flex-col gap-2'>
+            {sessionMessages?.length > 0 ? sessionMessages.map(msg=><p key={msg.id} className='animate-slide-up' style={{color: msg.color}}>{msg.text}</p>) : null}
+          </div>
         </div>
 
         <div className="flex items-start pt-2 justify-end gap-1 w-24">
@@ -153,7 +171,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
-      <ItemsBar freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} />
+      <ItemsBar showMessage={handleShowMessage} freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} />
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 
