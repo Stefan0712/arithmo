@@ -13,7 +13,7 @@ import Menu from './components/pages/Menu';
 import GamesHistory from './components/pages/GameHistory/GamesHistory';
 import { useTheme } from './hooks/useTheme';
 import { StoreProvider } from './context/StoreProvider';
-import ExperienceHistory from './components/pages/experienceHistory';
+import ExperienceHistory from './components/pages/ExperienceHistory';
 
 
 

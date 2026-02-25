@@ -68,6 +68,8 @@ export const createDefaultUser = (): UserProfile => {
     bestStreak: 0,
     lastLoginDate: new Date(),
 
+    inventory: [],
+
     // Status
     subscriptionTier: 'FREE',
     syncedAt: null,
