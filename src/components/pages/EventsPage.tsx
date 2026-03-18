@@ -55,14 +55,14 @@ function DailyChallengeView() {
 }
 
 function LeagueView() {
-    const mockPlayers: LeaguePlayer[] = Array.from({ length: 20 }, (_, i) => ({
-        id: `player-${i + 1}`,
-        username: i === 9 ? 'You' : `Player${i + 1}`,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`,
-        score: 1000 - i * 50,
-        rank: i + 1,
-        isCurrentUser: i === 9,
-    }));
+    // const mockPlayers: LeaguePlayer[] = Array.from({ length: 20 }, (_, i) => ({
+    //     id: `player-${i + 1}`,
+    //     username: i === 9 ? 'You' : `Player${i + 1}`,
+    //     avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`,
+    //     score: 1000 - i * 50,
+    //     rank: i + 1,
+    //     isCurrentUser: i === 9,
+    // }));
 
     return (
         <div className="h-full overflow-y-auto no-scrollbar px-6 pb-6">
@@ -81,52 +81,52 @@ interface LeagueRowProps {
     index: number;
 }
 
-function LeagueRow({ player, index }: LeagueRowProps) {
-    const isPromotion = player.rank <= 3;
-    const isDemotion = player.rank >= 18;
+// function LeagueRow({ player, index }: LeagueRowProps) {
+//     const isPromotion = player.rank <= 3;
+//     const isDemotion = player.rank >= 18;
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.03 }}
-            className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${player.isCurrentUser
-                ? 'bg-slate-800 border-blue-500'
-                : isPromotion
-                    ? 'bg-green-900/20 border-green-500/30'
-                    : isDemotion
-                        ? 'bg-red-900/20 border-red-500/30'
-                        : 'bg-slate-800/30 border-slate-700/50'
-                }`}
-        >
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${player.rank <= 3
-                ? 'bg-amber-500 text-slate-900'
-                : 'bg-slate-700 text-slate-300'
-                }`}>
-                {player.rank}
-            </div>
+//     return (
+//         <motion.div
+//             initial={{ opacity: 0, x: -20 }}
+//             animate={{ opacity: 1, x: 0 }}
+//             transition={{ delay: index * 0.03 }}
+//             className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${player.isCurrentUser
+//                 ? 'bg-slate-800 border-blue-500'
+//                 : isPromotion
+//                     ? 'bg-green-900/20 border-green-500/30'
+//                     : isDemotion
+//                         ? 'bg-red-900/20 border-red-500/30'
+//                         : 'bg-slate-800/30 border-slate-700/50'
+//                 }`}
+//         >
+//             <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${player.rank <= 3
+//                 ? 'bg-amber-500 text-slate-900'
+//                 : 'bg-slate-700 text-slate-300'
+//                 }`}>
+//                 {player.rank}
+//             </div>
 
-            <div className="w-10 h-10 rounded-full bg-slate-700 overflow-hidden border-2 border-slate-600">
-                <img src={player.avatar} alt={player.username} className="w-full h-full" />
-            </div>
+//             <div className="w-10 h-10 rounded-full bg-slate-700 overflow-hidden border-2 border-slate-600">
+//                 <img src={player.avatar} alt={player.username} className="w-full h-full" />
+//             </div>
 
-            <div className="flex-1">
-                <p className={`font-semibold ${player.isCurrentUser ? 'text-blue-400' : 'text-white'
-                    }`}>
-                    {player.username}
-                </p>
-            </div>
+//             <div className="flex-1">
+//                 <p className={`font-semibold ${player.isCurrentUser ? 'text-blue-400' : 'text-white'
+//                     }`}>
+//                     {player.username}
+//                 </p>
+//             </div>
 
-            <div className="text-right">
-                <p className="font-mono font-bold text-white">{player.score}</p>
-            </div>
+//             <div className="text-right">
+//                 <p className="font-mono font-bold text-white">{player.score}</p>
+//             </div>
 
-            {isPromotion && (
-                <TrendingUp className="w-5 h-5 text-green-400" />
-            )}
-            {isDemotion && (
-                <TrendingDown className="w-5 h-5 text-red-400" />
-            )}
-        </motion.div>
-    );
-}
+//             {isPromotion && (
+//                 <TrendingUp className="w-5 h-5 text-green-400" />
+//             )}
+//             {isDemotion && (
+//                 <TrendingDown className="w-5 h-5 text-red-400" />
+//             )}
+//         </motion.div>
+//     );
+// }

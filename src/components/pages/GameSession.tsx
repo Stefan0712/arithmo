@@ -171,7 +171,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
-      <ItemsBar showMessage={handleShowMessage} freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} hasTimer={engine.timeLeft} hasLives={engine.lives}/>
+      <ItemsBar showMessage={handleShowMessage} freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} hasTimer={engine.timeLeft !== null} hasLives={engine.lives !== null}/>
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 
