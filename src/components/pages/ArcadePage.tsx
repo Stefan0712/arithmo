@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-// import { Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { DEFAULT_MODES, type GameModeDetail } from '../../lib/modes';
 

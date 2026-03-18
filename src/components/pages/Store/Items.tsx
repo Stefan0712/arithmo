@@ -6,7 +6,6 @@ import { useStore } from '../../../context/useStore';
 import { ITEM_CATALOG } from '../../../lib/store/store';
 import { purchaseBundle } from '../../../lib/store/actions';
 
-// --- CONFIG: REAL MONEY BUNDLES ---
 const BUNDLE_DEALS = [
   {
     id: 'starter_pack',
@@ -29,7 +28,7 @@ const BUNDLE_DEALS = [
     contents: [
       { itemId: 'item_heart', qty: 5, name: 'Lives' },
       { itemId: 'item_freeze', qty: 5, name: 'Freeze' },
-      { itemId: 'item_skip', qty: 2, name: 'Skips' } // Assuming you have skips
+      { itemId: 'item_skip', qty: 2, name: 'Skips' }
     ],
     saveLabel: 'BEST VALUE'
   }
@@ -39,7 +38,6 @@ export const Items = () => {
   const { buyItem } = useStore();
   const [processingId, setProcessingId] = useState<string | null>(null);
 
-  // Live Wallet Balance
   const user = useLiveQuery(() => {
     const userId = localStorage.getItem('userId');
     return userId ? db.user.get(userId) : undefined;
@@ -47,7 +45,6 @@ export const Items = () => {
   const inventory = useLiveQuery(() => {
     return db.inventory.toArray() ?? [];
   });
-  // --- HANDLERS ---
 
   const handleBuySingle = async (item: typeof ITEM_CATALOG[0]) => {
     if (!user || user.credits < item.price || processingId) return;
@@ -63,10 +60,8 @@ export const Items = () => {
     if (processingId) return;
     setProcessingId(bundle.id);
 
-    // Simulate Payment Delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Execute Bundle Logic
     const result = await purchaseBundle(bundle.id, bundle.contents);
     setProcessingId(null);
 
@@ -101,7 +96,6 @@ export const Items = () => {
   return (
     <div className="space-y-8 pb-8">
       
-      {/* 1. SECTION: REAL MONEY BUNDLES (The "Good Deals") */}
       <div>
         <h3 className="font-bold text-muted uppercase text-xs tracking-wider mb-3 px-1">
           Special Offers
@@ -114,7 +108,6 @@ export const Items = () => {
               disabled={!!processingId}
               className="group relative flex items-center justify-between p-4 bg-gradient-to-br from-surface to-surface/50 border border-primary/20 hover:border-primary/60 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-[0.98] text-left"
             >
-              {/* Save Badge */}
               <div className="absolute -top-2.5 right-4 bg-yellow-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm">
                 {bundle.saveLabel}
               </div>
@@ -143,7 +136,6 @@ export const Items = () => {
         </div>
       </div>
 
-      {/* 2. SECTION: SINGLE ITEMS (Braincells) */}
       <div>
         <div className="flex justify-between items-end mb-3 px-1">
           <h3 className="font-bold text-muted uppercase text-xs tracking-wider">

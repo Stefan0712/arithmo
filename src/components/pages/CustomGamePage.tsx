@@ -18,29 +18,25 @@ const OPERATIONS = [
 export const CustomGamePage = () => {
   const navigate = useNavigate();
 
-  // --- STANDARD STATE ---
   const [ops, setOps] = useState<Operation[]>(['ADD', 'SUB']);
-  const [difficulty, setDifficulty] = useState(1); // Used only if !isAdvanced
+  const [difficulty, setDifficulty] = useState(1); 
   
-  // --- ADVANCED STATE ---
   const [isAdvanced, setIsAdvanced] = useState(false);
-  const [operandCount, setOperandCount] = useState(2); // 2 = "A + B"
+  const [operandCount, setOperandCount] = useState(2);
   const [allowMixedOps, setAllowMixedOps] = useState(false);
   const [inputMin, setInputMin] = useState(2);
   const [inputMax, setInputMax] = useState(12);
   const [resultMax, setResultMax] = useState(100);
 
-  // --- CONSTRAINTS ---
   const [timeBonusAmount, setTimeBonusAmount] = useState(0);
   const [timeBonusThreshold, setTimeBonusThreshold] = useState(0);
   const [timerMode, setTimerMode] = useState<TimerMode>('TOTAL');
-  const [timeValue, setTimeValue] = useState(60); // Used for Total OR Per-Question
+  const [timeValue, setTimeValue] = useState(60);
   const [hasLivesLimit, setHasLivesLimit] = useState(true);
   const [livesValue, setLivesValue] = useState(3);
   const [livesBonusAmount, setLivesBonusAmount] = useState(0);
   const [livesBonusThreshold, setLivesBonusThreshold] = useState(0);
 
-  // --- HANDLERS ---
   const toggleOp = (op: Operation) => {
     if (ops.includes(op)) {
       if (ops.length > 1) setOps(ops.filter(o => o !== op));
@@ -50,27 +46,22 @@ export const CustomGamePage = () => {
   };
 
   const handleStart = () => {
-    // Build Config based on Mode
     const customConfig: GameConfig = {
       modeName: 'Custom Game',
       mode: 'CUSTOM',
       multiplier: 0,
       allowedOps: ops,
 
-      // Advanced Overrides
       operandCount: operandCount,
       allowMixedOps: allowMixedOps,
       inputRange: { min: inputMin, max: inputMax } ,
       resultRange: { min: 0, max: resultMax },
       
-      // Timer Logic
       timerMode: timerMode,
       timeValue: timerMode === 'NONE' ? null : timeValue,
       
-      // Lives
       startingLives: hasLivesLimit ? livesValue : null,
       
-      // Constants
       timeBonusAmount,
       timeBonusThreshold,
       livesBonusAmount,
@@ -83,7 +74,7 @@ export const CustomGamePage = () => {
 
   return (
     <div className="grid grid-rows-[auto_1fr_60px] gap-2 h-full bg-background p-6 overflow-hidden no-scrollbar">
-      
+    
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

@@ -27,7 +27,6 @@ export const GameHistoryItem = ({ log }: GameHistoryItemProps) => {
 
   const handlePlayAgain = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Navigate to play route with the SAVED config
     navigate('/play/custom', { state: { config: log.config } });
   };
 

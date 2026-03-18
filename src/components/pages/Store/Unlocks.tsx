@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Crown, Zap, BarChart3, Coffee, Check, Hammer } from 'lucide-react';
 
-// --- MOCK CATALOG ---
 const PREMIUM_FEATURES = [
   {
     id: 'remove_ads',
@@ -28,7 +27,7 @@ const PREMIUM_FEATURES = [
     price: '$1.99',
     icon: <BarChart3 className="text-blue-500" size={24} />,
     color: 'bg-blue-500/10 border-blue-500/20',
-    owned: true // Mock: User already bought this
+    owned: true
   },
   {
     id: 'dev_coffee',
@@ -48,7 +47,6 @@ export const Unlocks = () => {
     if (processingId) return;
     setProcessingId(id);
     
-    // Mock Delay
     setTimeout(() => {
       setProcessingId(null);
       alert("This is a mock purchase. In the real app, this opens the Payment Sheet.");
@@ -58,7 +56,6 @@ export const Unlocks = () => {
   return (
     <div className="space-y-6 pb-8">
       
-      {/* Hero Banner */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-500/20 to-orange-600/20 border border-yellow-500/30 p-6 text-center">
         <div className="absolute top-0 right-0 p-8 opacity-10">
           <Crown size={120} />
@@ -73,7 +70,6 @@ export const Unlocks = () => {
         </p>
       </div>
 
-      {/* Feature Grid */}
       <div className="grid gap-3">
         {PREMIUM_FEATURES.map((feature) => {
           const isProcessing = processingId === feature.id;
@@ -91,12 +87,10 @@ export const Unlocks = () => {
                 }
               `}
             >
-              {/* Icon Box */}
               <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${feature.color}`}>
                 {feature.icon}
               </div>
 
-              {/* Text Info */}
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h4 className="font-bold text-foreground">{feature.title}</h4>
@@ -111,7 +105,6 @@ export const Unlocks = () => {
                 </p>
               </div>
 
-              {/* Action Button (Fake) */}
               {!feature.owned && (
                 <div className={`
                   px-4 py-2 rounded-lg font-bold text-sm bg-foreground text-background 

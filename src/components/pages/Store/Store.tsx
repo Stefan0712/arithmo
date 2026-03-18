@@ -11,10 +11,8 @@ const Store = () => {
 
   return (
     <div className="absolute w-full h-tull top-0 left-0 inset-0 z-50 flex justify-end">
-      {/* 2. The Drawer */}
       <div className="relative w-full max-w-md h-full bg-surface border-l border-border shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col">
         
-        {/* --- HEADER --- */}
         <div className="p-4 border-b border-border flex justify-between items-center bg-surface/50 backdrop-blur-xl z-10">
           <h2 className="text-xl font-black text-title flex items-center gap-2 tracking-tight">
             <ShoppingBag className="text-primary" />
@@ -27,8 +25,6 @@ const Store = () => {
             <X size={24} />
           </button>
         </div>
-
-        {/* --- TABS --- */}
         <div className="flex p-2 gap-2 bg-surface/50 border-b border-border">
           <TabButton 
             isActive={activeTab === 'items'} 
@@ -50,7 +46,6 @@ const Store = () => {
           />
         </div>
 
-        {/* --- BODY CONTENT --- */}
         <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
           
           {activeTab === 'items' && (
@@ -70,8 +65,6 @@ const Store = () => {
     </div>
   );
 };
-
-// --- HELPER COMPONENTS ---
 
 const TabButton = ({ isActive, onClick, icon, label }: any) => (
   <button

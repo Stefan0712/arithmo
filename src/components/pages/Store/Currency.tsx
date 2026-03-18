@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Coins, Zap, Star } from 'lucide-react';
 import { purchaseCredits } from '../../../lib/store/actions';
 
-// 1. Define the Packs
 const CURRENCY_PACKS = [
   { 
     id: 'starter', 
@@ -48,17 +47,14 @@ export const Currency = () => {
 
     setProcessingId(pack.id);
 
-    // Simulate Network Delay (looks more real)
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    // Execute Purchase
     const totalAmount = pack.amount + pack.bonus;
     const result = await purchaseCredits(totalAmount);
 
     setProcessingId(null);
 
     if (result.success) {
-      // In a real app, use a Toast notification here
       alert(`Success! Added ${totalAmount} Braincells to your wallet.`);
     } else {
       alert("Transaction failed. Please try again.");
@@ -67,7 +63,6 @@ export const Currency = () => {
 
   return (
     <div className="space-y-6 pb-8">
-      {/* Header Info */}
       <div className="bg-primary/10 border border-primary/20 p-4 rounded-xl flex items-start gap-3">
         <div className="bg-primary/20 p-2 rounded-lg text-primary">
           <Coins size={20} />
@@ -81,7 +76,6 @@ export const Currency = () => {
         </div>
       </div>
 
-      {/* Packs Grid */}
       <div className="grid gap-3">
         {CURRENCY_PACKS.map((pack) => {
           const isProcessing = processingId === pack.id;
@@ -101,7 +95,6 @@ export const Currency = () => {
                 active:scale-[0.98] disabled:opacity-70 disabled:cursor-wait
               `}
             >
-              {/* Badges */}
               {pack.popular && (
                 <span className="absolute -top-3 right-4 bg-purple-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                   Most Popular
@@ -113,7 +106,6 @@ export const Currency = () => {
                 </span>
               )}
 
-              {/* Left Side: Icon & Amount */}
               <div className="flex items-center gap-4">
                 <div className={`w-14 h-14 rounded-xl ${pack.color} flex items-center justify-center shadow-inner`}>
                   {isProcessing ? (
@@ -136,7 +128,6 @@ export const Currency = () => {
                 </div>
               </div>
 
-              {/* Right Side: Price Button Look */}
               <div className={`
                 px-5 py-2.5 rounded-lg font-bold text-sm transition-colors
                 ${pack.popular || pack.bestValue

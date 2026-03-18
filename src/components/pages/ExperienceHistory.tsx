@@ -2,7 +2,6 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../../db/db';
 import { Swords, Calendar, Trophy, Zap, Clock, Info } from 'lucide-react';
 
-// Helper to format the source into UI-friendly labels and icons
 const getSourceUI = (source: string) => {
   switch (source) {
     case 'GAME_WIN':
@@ -21,7 +20,6 @@ const getSourceUI = (source: string) => {
 
 
 const ExperienceHistory = () => {
-    // Fetch logs for the current user, sorted by newest first. Limit to last 50 to keep UI fast.
     const logs = useLiveQuery(() => {
         const userId = localStorage.getItem('userId');
         if (!userId) return [];
@@ -30,7 +28,7 @@ const ExperienceHistory = () => {
         .where('userId').equals(userId)
         .reverse()
         .sortBy('timestamp')
-        .then(results => results.slice(0, 50)); // Get top 50
+        .then(results => results.slice(0, 50));
     }, []);
 
     if (logs === undefined) {
@@ -69,7 +67,6 @@ const ExperienceHistory = () => {
                             ${index !== logs.length - 1 ? 'border-b border-border/50' : ''}
                         `}
                     >
-                        {/* Left Side: Icon & Details */}
                         <div className="flex items-center gap-4">
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${ui.bg} ${ui.color}`}>
                                 {ui.icon}
@@ -90,7 +87,6 @@ const ExperienceHistory = () => {
                         </div>
                     </div>
 
-                    {/* Right Side: XP Amount */}
                     <div className="text-right">
                         <div className="font-black text-green-500">
                         +{log.amount} <span className="text-xs">XP</span>

@@ -29,7 +29,6 @@ const Timer: React.FC<TimerProps> = ({setTimeValue, setTimerMode, isAdvanced, ti
           <span className="font-bold text-sm text-muted">Timer Mode</span>
         </div>
         
-        {/* Simple On/Off for Basic, Mode Switch for Advanced */}
         {!isAdvanced ? (
             <div className="text-xs font-bold text-muted">TOTAL TIME</div>
         ) : (

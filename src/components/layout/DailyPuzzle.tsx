@@ -4,8 +4,8 @@ import { useDaily } from '../../hooks/useDaily';
 import { addXp } from '../../lib/xp';
 
 interface DailyPuzzleCardProps {
-  expression: string;  // "15 + 12 x 2"
-  answer: number;      // 39
+  expression: string;
+  answer: number;
 }
 
 export const DailyPuzzleCard = ({ expression, answer }: DailyPuzzleCardProps) => {
@@ -13,7 +13,6 @@ export const DailyPuzzleCard = ({ expression, answer }: DailyPuzzleCardProps) =>
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'IDLE' | 'WRONG'>('IDLE');
 
-  // Safety check
   if (!dailyState) return <div className="animate-pulse h-48 bg-surface rounded-2xl" />;
 
   const isSolved = dailyState.puzzleSolved;
@@ -28,9 +27,7 @@ export const DailyPuzzleCard = ({ expression, answer }: DailyPuzzleCardProps) =>
     const isCorrect = val === answer;
 
     if (isCorrect) {
-      // Save State
       await submitPuzzleAttempt(true);
-      // Award XP (One time!)
       await addXp({ amount: 25, source: 'DAILY_PUZZLE' }); 
     } else {
       setFeedback('WRONG');
@@ -45,7 +42,6 @@ export const DailyPuzzleCard = ({ expression, answer }: DailyPuzzleCardProps) =>
       <div className="flex justify-between items-start">
         <h3 className="font-bold text-lg text-title">Daily Puzzle</h3>
         
-        {/* Tries Counter */}
         <div className={`text-xs font-bold px-2 py-1 rounded border ${
           isFailed ? 'bg-red-500/10 text-red-500 border-red-500/20' : 
           'bg-background text-muted border-border'
@@ -54,12 +50,10 @@ export const DailyPuzzleCard = ({ expression, answer }: DailyPuzzleCardProps) =>
         </div>
       </div>
 
-      {/* The Math Problem */}
       <div className="text-3xl font-mono font-bold text-center py-6">
         {expression}
       </div>
 
-      {/* Input Section */}
       {isSolved ? (
         <div className="bg-green-500/10 border border-green-500/50 text-green-500 rounded-xl p-3 flex justify-center items-center gap-2 font-bold">
           <Check size={20} /> Correct! (+25 XP)

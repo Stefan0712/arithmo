@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Lock, Check } from 'lucide-react';
 import type { Level } from '../../types/types';
+import ComingSoon from '../layout/ComingSoon';
 
 
 const mockLevels: Level[] = [
@@ -15,6 +16,7 @@ const mockLevels: Level[] = [
 ];
 
 export default function SagaMapScreen() {
+    return (<ComingSoon />)
     return (
         <div className="h-full overflow-y-auto no-scrollbar px-6 py-8">
             <div className="max-w-md mx-auto">
@@ -22,7 +24,6 @@ export default function SagaMapScreen() {
 
                 <div className="relative">
                     <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-700 -translate-x-1/2" />
-
                     <div className="space-y-6">
                         {mockLevels.map((level, index) => (
                             <LevelNode
@@ -85,11 +86,11 @@ function LevelNode({ level, index }: LevelNodeProps) {
                         <div
                             key={i}
                             className={`w-1.5 h-1.5 rounded-full ${i < level.difficulty
-                                ? isLocked
-                                    ? 'bg-slate-600'
-                                    : 'bg-blue-500'
-                                : 'bg-slate-700'
-                                }`}
+                            ? isLocked
+                                ? 'bg-slate-600'
+                                : 'bg-blue-500'
+                            : 'bg-slate-700'
+                            }`}
                         />
                     ))}
                 </div>

@@ -9,7 +9,7 @@ export const MainLayout = () => {
   const { isOpen } = useStore();
   
   return (
-    <div className="flex flex-col h-[100dvh] bg-background text-body overflow-hidden font-sans ">
+    <div className="flex flex-col h-full w-full bg-background text-body overflow-hidden font-sans ">
       <Header />
       <main className="flex-1 overflow-y-auto relative no-scrollbar relative">
         {isOpen ? <Store /> : null}

@@ -19,7 +19,6 @@ const rawInventory = useLiveQuery(() => db.inventory.toArray());
     const itemCounts = useMemo(() => {
         const counts: Record<string, number> = {};
         
-        // If it's loaded, populate the counts
         if (rawInventory) {
             rawInventory.forEach((item) => {
                 if (!item.isUsed) {
@@ -28,7 +27,6 @@ const rawInventory = useLiveQuery(() => db.inventory.toArray());
             });
         }
         
-        // Always return the object, so it's never 'undefined'
         return counts; 
     }, [rawInventory]);
 
