@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown } from 'lucide-react';
-import type { LeaguePlayer } from '../../types/types';
+// import { motion } from 'framer-motion';
+// import { TrendingUp, TrendingDown } from 'lucide-react';
+// import type { LeaguePlayer } from '../../types/types';
 import { DailyPuzzleCard } from '../layout/DailyPuzzle';
 import ComingSoon from '../layout/ComingSoon';
 
@@ -76,10 +76,10 @@ function LeagueView() {
     );
 }
 
-interface LeagueRowProps {
-    player: LeaguePlayer;
-    index: number;
-}
+// interface LeagueRowProps {
+//     player: LeaguePlayer;
+//     index: number;
+// }
 
 // function LeagueRow({ player, index }: LeagueRowProps) {
 //     const isPromotion = player.rank <= 3;
