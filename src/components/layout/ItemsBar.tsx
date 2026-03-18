@@ -10,9 +10,11 @@ interface ItemsBarProps {
     addLife: ()=>void;
     skip: ()=> void;
     showMessage: (text: string, color: string) => void;
+    hasLives: boolean;
+    hasTimer: boolean;
 }
 
-const ItemsBar: React.FC<ItemsBarProps> = ({freezeTime, addLife, skip, showMessage}) => {
+const ItemsBar: React.FC<ItemsBarProps> = ({freezeTime, addLife, skip, showMessage, hasLives, hasTimer}) => {
 
 const rawInventory = useLiveQuery(() => db.inventory.toArray());
 
@@ -35,10 +37,10 @@ const rawInventory = useLiveQuery(() => db.inventory.toArray());
     );
 
     const handleActivateItem = (item: CatalogItem) => {
-        if (item.id==='item_freeze') {
+        if (item.id==='item_freeze' && hasTimer) {
             freezeTime();
             showMessage('Time frozen', "lightblue")
-        } else if ( item.id === 'item_life') {
+        } else if ( item.id === 'item_life' && hasLives) {
             addLife();
             showMessage("Extra life added", "red");
         } else if(item.id === 'item_skip'){
@@ -79,11 +81,11 @@ const Item = ({item, itemCounts, handleClick}: {item: CatalogItem, itemCounts: n
 
     return (
         <div 
-            onClick={handleClick}
+            onClick={()=> itemCounts > 0 ? handleClick() : null}
             className={`px-2 p-1 h-[50px] rounded flex gap-2 items-center justify-center ${item.bgColor} ${item.color}`}
         >
             {getItemIcon(item.icon)}
-            <b>{itemCounts}</b>
+            <b>{itemCounts ?? 0}</b>
         </div>
     )
 }

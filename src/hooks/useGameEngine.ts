@@ -3,8 +3,13 @@ import type { GameConfig } from "../types/game";
 import { generateAdvancedProblem, type MathProblem } from "../lib/math";
 import { calculateQuestionXp } from "../lib/xp";
 import { estimateDifficulty } from "../lib/difficultyPresets";
+import { useItem } from "../services/transactions";
+import { getUserInventoryCounts } from "../db/db";
 
 export const useGameEngine = (config: GameConfig) => {
+
+  const [inventory, setInventory] = useState<Record<string, number>>({});
+  
   // Game State
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -37,9 +42,25 @@ export const useGameEngine = (config: GameConfig) => {
   // Derived state (helper boolean)
   const isTimerFrozen = freezeTimeLeft > 0;
 
+  const refreshInventory = async () => {
+    const counts = await getUserInventoryCounts();
+    setInventory(counts);
+  };
+  useEffect(() => {
+    refreshInventory();
+  }, []);
+
   // The Function to trigger the item
   const handleFreezeTime = (amount: number) => {
-    setFreezeTimeLeft(prev => prev + amount);
+    if(timeLeft && timeLeft > 0) {
+      const currentCount = inventory['item_freeze'] || 0;
+      if (currentCount > 0) {
+        setFreezeTimeLeft(prev => prev + amount);
+        useItem('item_freeze')
+      } else {
+        return;
+      }
+    }
   };
 
   const togglePause = useCallback(()=> {
@@ -48,12 +69,24 @@ export const useGameEngine = (config: GameConfig) => {
 
   const handleAddLife = (amount: number) => {
     if(lives) {
-      setLives(prev => prev ? prev + amount : null)
+      const currentCount = inventory['item_life'] || 0;
+      if (currentCount > 0) {
+        setLives(prev => prev ? prev + amount : null)
+        useItem('item_life')
+      } else {
+        return;
+      }
     }
   }
 
   const handleSkip = () => {
-    setProblem(getNextProblem());
+    const currentCount = inventory['item_skip'] || 0;
+    if (currentCount > 0) {
+      setProblem(getNextProblem());
+      useItem('item_skip')
+    } else {
+      return;
+    }
   }
 
   // Generate problem

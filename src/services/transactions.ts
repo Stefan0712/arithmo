@@ -1,6 +1,7 @@
 import { BUNDLE_DEALS } from '../data/catalog';
 import { db } from '../db/db';
 import { useCatalogStore } from '../store/useCatalogStore';
+import { useNotificationStore } from '../store/useNotificationStore';
 
 export const buyItem = async (itemId: string): Promise<{ success: boolean; error?: string }> => {
     const userId = localStorage.getItem('userId');
@@ -50,7 +51,7 @@ export const buyCredits = async (packId: string): Promise<{ success: boolean; er
     if (!pack || !userId) return { success: false, error: "Pack or User not found" };
 
     try {
-        const totalGained = pack.cells + pack.bonus;
+        const totalGained = pack.amount + pack.bonus;
 
         await db.user.update(userId, {
         credits: (await db.user.get(userId))?.credits || 0 + totalGained
@@ -104,4 +105,42 @@ export const buyBundle = async (bundleId: string): Promise<{ success: boolean; e
         console.error("Bundle purchase failed:", err);
         return { success: false, error: "Could not process bundle." };
     }
+};
+
+
+export const useItem = async (itemId: string, instanceId?: string): Promise<{ success: boolean; error?: string }> => {
+  const userId = localStorage.getItem('userId');
+  const { addNotification } = useNotificationStore.getState();
+
+  if (!userId) return { success: false, error: "User not found" };
+
+  try {
+    let targetId = instanceId;
+
+    // If no specific instance was provided, find the oldest one of this type
+    if (!targetId) {
+      const item = await db.inventory
+        .where({ itemId, ownerId: userId })
+        .first();
+
+      if (!item) {
+        addNotification(`You're out of those!`, "error");
+        return { success: false, error: "No items remaining" };
+      }
+      targetId = item._id;
+    }
+
+    // Delete the instance
+    await db.inventory.delete(targetId);
+
+    // TODO: Add a queue sync action.
+    // await db.syncQueue.add({ action: 'USE_ITEM', payload: { instanceId: targetId, itemId } });
+
+    console.log(`[INVENTORY] Consumed ${itemId} (ID: ${targetId})`);
+    return { success: true };
+
+  } catch (err: any) {
+    console.error("Use item failed:", err);
+    return { success: false, error: err.message };
+  }
 };

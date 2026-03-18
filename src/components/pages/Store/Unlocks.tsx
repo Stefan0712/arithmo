@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Crown, Zap, BarChart3, Coffee, Check, Hammer } from 'lucide-react';
+import ComingSoon from '../../layout/ComingSoon';
 
 const PREMIUM_FEATURES = [
   {
@@ -52,7 +53,7 @@ export const Unlocks = () => {
       alert("This is a mock purchase. In the real app, this opens the Payment Sheet.");
     }, 1000);
   };
-
+  return (<ComingSoon />)
   return (
     <div className="space-y-6 pb-8">
       

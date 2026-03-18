@@ -120,3 +120,21 @@ export const getUserXP = async (): Promise<number> => {
   const user = await db.user.get(userId);
   return user?.xp ?? 0;
 };
+
+// Get items owned by the user
+export const getUserInventoryCounts = async (): Promise<Record<string, number>> => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) return {};
+
+  // Get all items belonging to this user
+  const items = await db.inventory.where({ ownerId: userId }).toArray();
+
+  // Count them up by itemId
+  const counts: Record<string, number> = {};
+  
+  items.forEach(item => {
+    counts[item.itemId] = (counts[item.itemId] || 0) + 1;
+  });
+
+  return counts;
+};

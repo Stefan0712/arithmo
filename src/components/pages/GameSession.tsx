@@ -93,15 +93,15 @@ export const GameSession = () => {
     if (!currentInput) return;
     const val = parseInt(currentInput, 10);
     engine.submitAnswer(val);
-    setCurrentInput(''); // Clear input after submit
+    setCurrentInput('');
   };
 
   const getFontSize = (text: string) => {
     const len = text.length;
-    if (len < 10) return "text-6xl"; // Standard (2 + 2)
-    if (len < 15) return "text-5xl"; // Medium (12 + 15 * 2)
-    if (len < 20) return "text-4xl"; // Long (12 + 15 * 2 - 5)
-    return "text-3xl";               // Very Long (Complex chains)
+    if (len < 10) return "text-6xl";
+    if (len < 15) return "text-5xl";
+    if (len < 20) return "text-4xl";
+    return "text-3xl";
   };
   return (
     <div className="flex flex-col h-full bg-background relative overflow-hidden">
@@ -171,7 +171,7 @@ export const GameSession = () => {
           </span>
         </div>
       </div>
-      <ItemsBar showMessage={handleShowMessage} freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} />
+      <ItemsBar showMessage={handleShowMessage} freezeTime={()=>engine.handleFreezeTime(10)} skip={engine.handleSkip} addLife={()=>engine.handleAddLife(1)} hasTimer={engine.timeLeft} hasLives={engine.lives}/>
       <div className="bg-surface/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-2 shadow-2xl z-20">
         <Numpad 
           onInput={handleDigit} 
