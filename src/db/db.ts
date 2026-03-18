@@ -55,7 +55,7 @@ export const createDefaultUser = (): UserProfile => {
   localStorage.setItem('userId', userId);
   return {
     _id: userId, // Mongo-compatible ID
-    username: 'Stefan',
+    username: 'Guest',
     createdAt: new Date(),
 
     // Economy

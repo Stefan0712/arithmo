@@ -5,7 +5,6 @@ import SagaMapScreen from './components/pages/SagaPage';
 import ArcadePage from './components/pages/ArcadePage';
 import EventsScreen from './components/pages/EventsPage';
 import { useEffect } from 'react';
-import { getOrCreateUser } from './db/db';
 import { CustomGamePage } from './components/pages/CustomGamePage';
 import { GameSession } from './components/pages/GameSession';
 import GameOver from './components/pages/GameOver';
@@ -15,6 +14,7 @@ import { useTheme } from './hooks/useTheme';
 import ExperienceHistory from './components/pages/ExperienceHistory';
 import { useCatalogStore } from './store/useCatalogStore';
 import { NotificationContainer } from './components/layout/NotificationContainer';
+import { WelcomeScreen } from './components/pages/Welcome';
 
 
 
@@ -22,21 +22,18 @@ import { NotificationContainer } from './components/layout/NotificationContainer
 function App() {
 
   const { initCatalog } = useCatalogStore();
-
   
   useTheme();
 
   useEffect(() => {
     initCatalog();
-    getOrCreateUser().catch(console.error);
   }, []);
-
-
 
   return (
     <HashRouter>
       <NotificationContainer />
       <Routes>
+        <Route path='/welcome' element={<WelcomeScreen />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Navigate to="/saga" replace />} />
           <Route path="/saga" element={<SagaMapScreen />} />

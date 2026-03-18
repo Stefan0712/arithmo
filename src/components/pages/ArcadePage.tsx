@@ -6,7 +6,7 @@ export default function ArcadeScreen() {
     return (
         <div className="h-full grid grid-rows-[50px_1fr] overflow-hidden no-scrollbar p-4">
             <h2 className="text-2xl font-bold text-title font-black text-center no-scrollbar">Arcade</h2>
-            <div className="space-y-4 overflow-y-auto">
+            <div className="space-y-4 overflow-y-auto nice-scrollbar">
                 {DEFAULT_MODES.map((mode, index) => (
                     <ModeCard
                         key={mode.id}
