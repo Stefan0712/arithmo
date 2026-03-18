@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import type { LeaguePlayer } from '../../types/types';
 import { DailyPuzzleCard } from '../layout/DailyPuzzle';
+import ComingSoon from '../layout/ComingSoon';
 
 export default function EventsScreen() {
     const [activeTab, setActiveTab] = useState<'daily' | 'league'>('league');
@@ -65,11 +66,12 @@ function LeagueView() {
 
     return (
         <div className="h-full overflow-y-auto no-scrollbar px-6 pb-6">
-            <div className="max-w-md mx-auto space-y-2">
+            <ComingSoon />
+            {/* <div className="max-w-md mx-auto space-y-2">
                 {mockPlayers.map((player, index) => (
                     <LeagueRow key={player.id} player={player} index={index} />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }

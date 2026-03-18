@@ -37,16 +37,16 @@ const ExperienceHistory = () => {
 
     if (logs.length === 0) {
         return (
-        <div className="p-8 text-center border-2 border-dashed border-border rounded-2xl bg-surface/30">
-            <Clock className="mx-auto mb-2 text-muted-foreground" size={32} />
-            <h3 className="font-bold text-foreground">No History Yet</h3>
-            <p className="text-sm text-muted">Play some games to start earning XP!</p>
-        </div>
+            <div className="m-4 p-4 text-center border-2 border-dashed border-border rounded-2xl bg-surface/30">
+                <Clock className="mx-auto mb-2 text-muted-foreground" size={32} />
+                <h3 className="font-bold text-foreground">No History Yet</h3>
+                <p className="text-sm text-muted">Play some games to start earning XP!</p>
+            </div>
         );
     }
 
     return (
-        <div className="space-y-4 p-4">
+        <div className="p-4">
             <div className="flex justify-between items-center px-1">
                 <h3 className="font-bold text-lg text-title">Recent Activity</h3>
                 <span className="text-xs text-muted font-bold uppercase">Last 50 entries</span>

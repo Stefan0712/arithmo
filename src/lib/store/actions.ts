@@ -1,7 +1,7 @@
 import ObjectID from 'bson-objectid';
 import { db } from '../../db/db';
-import { ITEM_CATALOG } from './store';
 import type { InventoryItem } from '../../types/store';
+import { ITEM_CATALOG } from '../../data/catalog';
 
 export const purchaseItem = async (catalogItemId: string) => {
   const userId = localStorage.getItem('userId');

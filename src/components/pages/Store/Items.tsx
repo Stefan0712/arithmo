@@ -1,41 +1,17 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Shield, Package, Snowflake, Heart, FastForward, Zap, Circle } from 'lucide-react';
+import { Snowflake, Heart, FastForward, Zap, Circle, Package } from 'lucide-react';
 import { db } from '../../../db/db';
-import { useStore } from '../../../context/useStore';
-import { ITEM_CATALOG } from '../../../lib/store/store';
 import { purchaseBundle } from '../../../lib/store/actions';
+import { BUNDLE_DEALS, ITEM_CATALOG } from '../../../data/catalog';
+import { buyItem } from '../../../services/transactions';
+import { useNotificationStore } from '../../../store/useNotificationStore';
 
-const BUNDLE_DEALS = [
-  {
-    id: 'starter_pack',
-    name: 'Starter Kit',
-    price: '$1.99',
-    description: 'Perfect for beginners.',
-    icon: <Package className="text-orange-500" size={32} />,
-    contents: [
-      { itemId: 'item_heart', qty: 2, name: 'Lives' },
-      { itemId: 'item_freeze', qty: 2, name: 'Freeze' }
-    ],
-    saveLabel: 'SAVE 33%'
-  },
-  {
-    id: 'survivor_bundle',
-    name: 'Survivor Bundle',
-    price: '$4.99',
-    description: 'Stock up for the long run.',
-    icon: <Shield className="text-blue-500" size={32} />,
-    contents: [
-      { itemId: 'item_heart', qty: 5, name: 'Lives' },
-      { itemId: 'item_freeze', qty: 5, name: 'Freeze' },
-      { itemId: 'item_skip', qty: 2, name: 'Skips' }
-    ],
-    saveLabel: 'BEST VALUE'
-  }
-];
 
 export const Items = () => {
-  const { buyItem } = useStore();
+
+  const {addNotification} = useNotificationStore();
+
   const [processingId, setProcessingId] = useState<string | null>(null);
 
   const user = useLiveQuery(() => {
@@ -47,13 +23,14 @@ export const Items = () => {
   });
 
   const handleBuySingle = async (item: typeof ITEM_CATALOG[0]) => {
-    if (!user || user.credits < item.price || processingId) return;
     setProcessingId(item.id);
-    
     const result = await buyItem(item.id);
+    if(result) {
+      addNotification("Item bought successfully", 'success')
+    } else {
+      addNotification("Failed to buy item", 'error')
+    }
     setProcessingId(null);
-
-    if (!result.success) alert("Purchase failed: " + result.error);
   };
 
   const handleBuyBundle = async (bundle: typeof BUNDLE_DEALS[0]) => {
@@ -94,27 +71,26 @@ export const Items = () => {
   if (!user) return <div className="p-8 text-center text-muted">Loading Store...</div>;
 
   return (
-    <div className="space-y-8 pb-8">
-      
+    <div className="space-y-8 pb-8 nice-scrollbar">
       <div>
         <h3 className="font-bold text-muted uppercase text-xs tracking-wider mb-3 px-1">
-          Special Offers
+          Packages
         </h3>
-        <div className="grid gap-3">
+        <div className="gap-3 flex overflow-x-auto nice-scrollbar">
           {BUNDLE_DEALS.map((bundle) => (
             <button
               key={bundle.id}
               onClick={() => handleBuyBundle(bundle)}
               disabled={!!processingId}
-              className="group relative flex items-center justify-between p-4 bg-gradient-to-br from-surface to-surface/50 border border-primary/20 hover:border-primary/60 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-[0.98] text-left"
+              className="group w-1/2 gap-3 relative flex flex-col items-center justify-center p-4 bg-gradient-to-br from-surface to-surface/50 border border-primary/20 hover:border-primary/60 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-[0.98] text-center"
             >
-              <div className="absolute -top-2.5 right-4 bg-yellow-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm">
+              {/* <div className="absolute -top-2.5 right-4 bg-yellow-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm">
                 {bundle.saveLabel}
-              </div>
+              </div> */}
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col items-center gap-4">
                 <div className="w-12 h-12 bg-surface rounded-lg border border-border flex items-center justify-center shadow-inner">
-                  {bundle.icon}
+                  <Package size={32} />
                 </div>
                 <div>
                   <h4 className="font-bold text-foreground">{bundle.name}</h4>
@@ -157,7 +133,7 @@ export const Items = () => {
                 className={`
                   p-3 rounded-xl border border-border flex flex-col items-center text-center gap-2 transition-all relative
                   ${canAfford 
-                    ? 'bg-surface border-green-500 hover:border-primary/40' 
+                    ? 'bg-surface border-green-100' 
                     : 'bg-surface/50 border-transparent opacity-60'
                   }
                 `}
@@ -177,7 +153,7 @@ export const Items = () => {
                   className={`
                     w-full mt-2 py-1.5 rounded-lg text-xs font-bold transition-colors
                     ${canAfford 
-                      ? 'bg-secondary hover:bg-primary hover:text-white text-foreground' 
+                      ? 'bg-secondary hover:bg-primary hover:text-white text-foreground border border-white/10' 
                       : 'bg-muted/20 text-muted cursor-not-allowed'
                     }
                   `}

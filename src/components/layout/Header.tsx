@@ -1,11 +1,11 @@
 import { Zap } from 'lucide-react';
 import { useUser } from '../../hooks/useUser';
-import { useStore } from '../../context/useStore';
+import { useStoreUI } from '../../store/useUIStore';
 
 export const Header = () => {
   const { user, level, progressToNext, loading } = useUser();
 
-  const {openStore} = useStore();
+  const {openStore} = useStoreUI();
 
   if (loading || !user) return <div className="h-16 bg-header border-b border-border backdrop-blur-md" />; // Empty placeholder
 

@@ -1,4 +1,4 @@
-import type { CatalogItem } from "./store";
+import type { InventoryItem } from "./store";
 
 export interface UserProfile {
   _id: string;
@@ -19,7 +19,7 @@ export interface UserProfile {
   highestScore: number;
   bestStreak: number;
 
-  inventory: CatalogItem[];
+  inventory: InventoryItem[];
 
   // Challenges
   daily: {

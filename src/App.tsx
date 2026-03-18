@@ -12,45 +12,48 @@ import GameOver from './components/pages/GameOver';
 import Menu from './components/pages/Menu';
 import GamesHistory from './components/pages/GameHistory/GamesHistory';
 import { useTheme } from './hooks/useTheme';
-import { StoreProvider } from './context/StoreProvider';
 import ExperienceHistory from './components/pages/ExperienceHistory';
+import { useCatalogStore } from './store/useCatalogStore';
+import { NotificationContainer } from './components/layout/NotificationContainer';
 
 
 
 
 function App() {
 
+  const { initCatalog } = useCatalogStore();
+
   
   useTheme();
 
   useEffect(() => {
+    initCatalog();
     getOrCreateUser().catch(console.error);
   }, []);
 
 
 
   return (
-    <StoreProvider>
-      <HashRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Navigate to="/saga" replace />} />
-            <Route path="/saga" element={<SagaMapScreen />} />
-            <Route path="/arcade" element={<ArcadePage />} />
-            <Route path="/events" element={<EventsScreen />} />
-            <Route path="/custom-game" element={<CustomGamePage />} />
-            <Route path="/gameover/:id" element={<GameOver />} />
-            <Route path="/menu" element={<Menu />}/>
-            <Route path='/history' element={<GamesHistory />} />
-            <Route path='/experience-history' element={<ExperienceHistory />} />
-          </Route>
+    <HashRouter>
+      <NotificationContainer />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Navigate to="/saga" replace />} />
+          <Route path="/saga" element={<SagaMapScreen />} />
+          <Route path="/arcade" element={<ArcadePage />} />
+          <Route path="/events" element={<EventsScreen />} />
+          <Route path="/custom-game" element={<CustomGamePage />} />
+          <Route path="/gameover/:id" element={<GameOver />} />
+          <Route path="/menu" element={<Menu />}/>
+          <Route path='/history' element={<GamesHistory />} />
+          <Route path='/experience-history' element={<ExperienceHistory />} />
+        </Route>
 
-          <Route element={<GameLayout />}>
-            <Route path="/play/" element={<GameSession />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </StoreProvider>
+        <Route element={<GameLayout />}>
+          <Route path="/play/" element={<GameSession />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
 

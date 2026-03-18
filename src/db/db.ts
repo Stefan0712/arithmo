@@ -92,11 +92,31 @@ export const getOrCreateUser = async (): Promise<UserProfile> => {
   const existingUser = await db.user.toCollection().first();
   
   if (existingUser) {
+    console.log('Returning existing user')
     return existingUser;
+  }else {
+    // No user found? Create one.
+    const newUser = createDefaultUser();
+    await db.user.add(newUser);
+    return newUser;
   }
 
-  // No user found? Create one.
-  const newUser = createDefaultUser();
-  await db.user.add(newUser);
-  return newUser;
+  
+};
+// Get user's credits
+export const getUserCredits = async (): Promise<number> => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) return 0;
+
+  const user = await db.user.get(userId);
+  return user?.credits ?? 0;
+};
+
+// Get user's XP
+export const getUserXP = async (): Promise<number> => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) return 0;
+
+  const user = await db.user.get(userId);
+  return user?.xp ?? 0;
 };

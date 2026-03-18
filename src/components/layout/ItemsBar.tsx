@@ -1,9 +1,9 @@
 import { Snowflake, Heart, FastForward, Zap, MessageCircleQuestionMark, Plus } from 'lucide-react';
-import { ITEM_CATALOG } from '../../lib/store/store';
 import type { CatalogItem } from '../../types/store';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../../db/db';
 import { useMemo } from 'react';
+import { ITEM_CATALOG } from '../../data/catalog';
 
 interface ItemsBarProps {
     freezeTime: ()=>void;

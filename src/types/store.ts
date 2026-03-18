@@ -9,7 +9,6 @@ export interface CatalogItem {
   icon: string;  
   color: string;
   bgColor: string;
-  owned: number;
 }
 
 // The Instance

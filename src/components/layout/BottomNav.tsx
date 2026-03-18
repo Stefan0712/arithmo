@@ -24,7 +24,7 @@ export const BottomNav = () => {
           )}
         >
           <item.icon size={24} className='nav-icon' strokeWidth={2.5} />
-          <span className="text-[10px] text-primary font-bold mt-1 tracking-wide">
+          <span className="text-[10px] font-bold mt-1 tracking-wide">
             {item.label}
           </span>
         </NavLink>

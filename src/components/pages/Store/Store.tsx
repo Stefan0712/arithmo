@@ -1,13 +1,13 @@
 import { X, ShoppingBag, Coins, Crown } from 'lucide-react';
-import { useStore } from '../../../context/useStore';
 import { Items } from './Items';
 import { Currency } from './Currency';
 import { Unlocks } from './Unlocks';
+import { useStoreUI } from '../../../store/useUIStore';
 
 const Store = () => {
-  const { isOpen, closeStore, activeTab, setTab } = useStore();
+  const { isStoreOpen, closeStore, activeTab, setTab } = useStoreUI();
 
-  if (!isOpen) return null;
+  if (!isStoreOpen) return null;
 
   return (
     <div className="absolute w-full h-tull top-0 left-0 inset-0 z-50 flex justify-end">
@@ -46,7 +46,7 @@ const Store = () => {
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-6 nice-scrollbar">
           
           {activeTab === 'items' && (
             <Items />

@@ -9,8 +9,6 @@ export const useUser = () => {
   if (!user) return { user: null, loading: true };
 
   const level = getLevelFromXP(user.xp);
-  console.log(`You have ${user.xp} xp`)
-  console.log(user);
   const progressToNext = getProgressToNextLevel(user.xp);
   const xp = user.xp;
 
