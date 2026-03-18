@@ -4,20 +4,17 @@ import { DEFAULT_MODES, type GameModeDetail } from '../../lib/modes';
 
 export default function ArcadeScreen() {
     return (
-        <div className="h-full overflow-y-auto no-scrollbar px-6 py-8">
-            <div className="max-w-md mx-auto">
-                <h2 className="text-2xl font-bold text-title font-black mb-6 text-center">Arcade</h2>
+        <div className="h-full grid grid-rows-[50px_1fr] overflow-hidden no-scrollbar p-4">
+            <h2 className="text-2xl font-bold text-title font-black text-center no-scrollbar">Arcade</h2>
+            <div className="space-y-4 overflow-y-auto">
+                {DEFAULT_MODES.map((mode, index) => (
+                    <ModeCard
+                        key={mode.id}
+                        mode={mode}
+                        index={index}
+                    />
+                ))}
 
-                <div className="space-y-4">
-                    {DEFAULT_MODES.map((mode, index) => (
-                        <ModeCard
-                            key={mode.id}
-                            mode={mode}
-                            index={index}
-                        />
-                    ))}
-
-                </div>
             </div>
         </div>
     );

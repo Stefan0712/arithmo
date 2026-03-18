@@ -2,7 +2,8 @@ import {
   Flame, 
   Zap, 
   Leaf,
-  type LucideIcon, 
+  type LucideIcon,
+  Wrench, 
 } from 'lucide-react';
 import type { GameConfig } from '../types/game';
 
@@ -126,7 +127,7 @@ export const DEFAULT_MODES: GameModeDetail[] = [
     isLocked: false,
     description: 'You make the rules.',
     cost: 0,
-    icon: Leaf,
+    icon: Wrench,
     colorClass: 'text-emerald-500',
     config: null
   }
