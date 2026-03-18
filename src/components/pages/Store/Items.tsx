@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Snowflake, Heart, FastForward, Zap, Circle, Package } from 'lucide-react';
+import { Snowflake, Heart, FastForward, Zap, Circle, Package, BadgeQuestionMark } from 'lucide-react';
 import { db } from '../../../db/db';
 import { purchaseBundle } from '../../../lib/store/actions';
 import { BUNDLE_DEALS, ITEM_CATALOG } from '../../../data/catalog';
@@ -34,18 +34,14 @@ export const Items = () => {
   };
 
   const handleBuyBundle = async (bundle: typeof BUNDLE_DEALS[0]) => {
-    if (processingId) return;
     setProcessingId(bundle.id);
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
     const result = await purchaseBundle(bundle.id, bundle.contents);
     setProcessingId(null);
 
-    if (result.success) {
-      alert(`Unpacked ${bundle.name}! Items added to inventory.`);
+    if(result) {
+      addNotification("Package bought successfully", 'success')
     } else {
-      alert("Transaction failed.");
+      addNotification("Failed to buy package", 'error')
     }
   };
 
@@ -95,11 +91,15 @@ export const Items = () => {
                 <div>
                   <h4 className="font-bold text-foreground">{bundle.name}</h4>
                   <div className="text-xs text-muted flex gap-2">
-                    {bundle.contents.map((c, i) => (
-                      <span key={i} className="flex items-center">
-                        {c.qty}x {c.name} {i < bundle.contents.length - 1 && '•'}
-                      </span>
-                    ))}
+                    {bundle.contents.map((c, i) => {
+                      const itemData = ITEM_CATALOG.find(item => item.id === c.itemId);
+                      return (
+                        <span key={i} className="flex flex-col justify-center w-full mt-2 items-center">
+                          {itemData ? getItemIcon(itemData.icon) : <BadgeQuestionMark />}                          
+                          <p>{c.qty}</p>
+                        </span>
+                      )
+                      })}
                   </div>
                 </div>
               </div>

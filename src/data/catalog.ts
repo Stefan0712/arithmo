@@ -57,7 +57,7 @@ export const BUNDLE_DEALS = [
     price: '$1.99',
     description: 'Perfect for beginners.',
     contents: [
-      { itemId: 'item_heart', qty: 2},
+      { itemId: 'item_life', qty: 2},
       { itemId: 'item_freeze', qty: 2}
     ],
     saveLabel: 'SAVE 33%'
@@ -68,7 +68,7 @@ export const BUNDLE_DEALS = [
     price: '$4.99',
     description: 'Stock up for the long run.',
     contents: [
-      { itemId: 'item_heart', qty: 5},
+      { itemId: 'item_life', qty: 5},
       { itemId: 'item_freeze', qty: 5},
       { itemId: 'item_skip', qty: 2}
     ],
