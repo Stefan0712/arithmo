@@ -1,63 +1,29 @@
 import { useState } from 'react';
-import { Coins, Zap, Star } from 'lucide-react';
+import { Coins } from 'lucide-react';
 import { purchaseCredits } from '../../../lib/store/actions';
+import { CURRENCY_PACKS } from '../../../data/catalog';
+import { useNotificationStore } from '../../../store/useNotificationStore';
 
-const CURRENCY_PACKS = [
-  { 
-    id: 'starter', 
-    amount: 100, 
-    bonus: 0, 
-    price: '$0.99', 
-    color: 'bg-blue-500',
-    icon: <Coins className="text-white" size={24} />
-  },
-  { 
-    id: 'popular', 
-    amount: 550, 
-    bonus: 50, 
-    price: '$4.99', 
-    color: 'bg-purple-600', 
-    popular: true, // "Most Popular" tag
-    icon: <Zap className="text-white" size={24} />
-  },
-  { 
-    id: 'pro', 
-    amount: 1200, 
-    bonus: 200, 
-    price: '$9.99', 
-    color: 'bg-orange-500', 
-    bestValue: true, // "Best Value" tag
-    icon: <Star className="text-white" size={24} />
-  },
-  { 
-    id: 'whale', 
-    amount: 2500, 
-    bonus: 500, 
-    price: '$19.99', 
-    color: 'bg-emerald-500',
-    icon: <Coins className="text-white" size={28} />
-  }
-];
+
 
 export const Currency = () => {
+
+  const {addNotification} = useNotificationStore();
+  
   const [processingId, setProcessingId] = useState<string | null>(null);
 
   const handleBuy = async (pack: typeof CURRENCY_PACKS[0]) => {
     if (processingId) return;
 
     setProcessingId(pack.id);
-
-    await new Promise(resolve => setTimeout(resolve, 800));
-
     const totalAmount = pack.amount + pack.bonus;
     const result = await purchaseCredits(totalAmount);
-
     setProcessingId(null);
 
-    if (result.success) {
-      alert(`Success! Added ${totalAmount} Braincells to your wallet.`);
+    if(result) {
+      addNotification("Credits bought successfully", 'success')
     } else {
-      alert("Transaction failed. Please try again.");
+      addNotification("Failed to buy credits", 'error')
     }
   };
 
@@ -111,7 +77,7 @@ export const Currency = () => {
                   {isProcessing ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   ) : (
-                    pack.icon
+                    <Coins />
                   )}
                 </div>
                 
@@ -128,13 +94,7 @@ export const Currency = () => {
                 </div>
               </div>
 
-              <div className={`
-                px-5 py-2.5 rounded-lg font-bold text-sm transition-colors
-                ${pack.popular || pack.bestValue
-                  ? 'bg-foreground text-background group-hover:bg-primary group-hover:text-white'
-                  : 'bg-secondary text-secondary-foreground group-hover:bg-foreground group-hover:text-background'
-                }
-              `}>
+              <div className={`px-5 py-2.5 rounded-lg font-bold text-sm transition-colors group-hover:bg-primary`}>
                 {pack.price}
               </div>
             </button>

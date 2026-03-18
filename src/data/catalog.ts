@@ -1,6 +1,6 @@
 import type { CatalogItem } from "../types/store";
 
-export const CURRENCY_PACKS = [
+export const CREDIT_PACKS = [
   { id: 'pack_tiny', cells: 100, priceCents: 100, bonus: 0 },
   { id: 'pack_medium', cells: 550, priceCents: 500, bonus: 50 },
   { id: 'pack_huge', cells: 1200, priceCents: 1000, bonus: 200 },
@@ -73,5 +73,38 @@ export const BUNDLE_DEALS = [
       { itemId: 'item_skip', qty: 2}
     ],
     saveLabel: 'BEST VALUE'
+  }
+];
+
+export const CURRENCY_PACKS = [
+  { 
+    id: 'starter', 
+    amount: 100, 
+    bonus: 0, 
+    price: '$0.99', 
+    color: 'bg-blue-500',
+  },
+  { 
+    id: 'popular', 
+    amount: 550, 
+    bonus: 50, 
+    price: '$4.99', 
+    color: 'bg-purple-600', 
+    popular: true,
+  },
+  { 
+    id: 'pro', 
+    amount: 1200, 
+    bonus: 200, 
+    price: '$9.99', 
+    color: 'bg-orange-500', 
+    bestValue: true,
+  },
+  { 
+    id: 'whale', 
+    amount: 2500, 
+    bonus: 500, 
+    price: '$19.99', 
+    color: 'bg-emerald-500',
   }
 ];
